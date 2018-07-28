@@ -1,7 +1,7 @@
 import React from 'react';
 import {Component} from 'react';
 import { Router, Route, Switch } from 'react-router-dom';
-import HomePage from '../components/HomePage';
+import Dashboard from '../components/Dashboard';
 import createHistory from 'history/createBrowserHistory';
 
 
@@ -10,7 +10,7 @@ export const history = createHistory();
 class AppRouter extends Component {
 
   componentDidMount() {
-    document.title = "Loader Gallery";
+    document.title = "Contract Generator";
   }
 
   render() {
@@ -18,7 +18,7 @@ class AppRouter extends Component {
         <Router history={history}>
           <div>
             <Switch>
-              <Route path="/" component={HomePage} exact={true} />
+              <Route path="/" component={Dashboard} exact={true} />
             </Switch>
           </div>
         </Router>

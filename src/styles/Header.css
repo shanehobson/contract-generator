@@ -1,10 +1,11 @@
 .Header-headerContainer {
     background-color: #eaeaea;
-    min-height: 200px;
-    padding: 0 4rem;
+    min-height: 100px;
+    
 }
 .Header-gridContainer {
-    padding-top: 4rem;
+    padding-top: 1.5rem;
+    
 }
 
 
