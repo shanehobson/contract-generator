@@ -1,0 +1,12 @@
+body {
+    background: #eaeaea;
+}
+
+.container {
+    max-width: 1087px;
+    margin: 0 auto;
+}
+
+a {
+    text-decoration: none;
+}
