@@ -5,6 +5,9 @@ const customMuiTheme = createMuiTheme({
     palette: {
         primary: purple,
         secondary: grey
+    },
+    spacing: {
+        unit: 10
     }
 });
 

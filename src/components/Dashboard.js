@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Grid } from '@material-ui/core';
 import '../styles/Dashboard.css';
+import '../styles/Page1.css';
 import Page1 from './formPages/Page1';
 import Page2 from './formPages/Page2';
 import Page3 from './formPages/Page3';

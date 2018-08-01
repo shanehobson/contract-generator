@@ -2,12 +2,17 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
+import Grid from '@material-ui/core/Grid';
+import Button from '@material-ui/core/Button';
 import { withStyles } from '@material-ui/core/styles';
 import { changePage } from '../../actions/pages';
 
 const style = theme => ({
     root: {
         minHeight: 600
+    },
+    button: {
+        margin: theme.spacing.unit
     }
 });
 
@@ -21,10 +26,19 @@ class Page1 extends Component {
     }
 
     render() {
+        const { classes } = this.props;
         return (
             <Paper classes={{root: this.props.classes.root}} elevation={1}>
-                Page 1
-                <button onClick={this.handleNextPageButtonClick}>Next Page</button>
+                <div className='Page1TopDiv'>
+                    <Typography variant='display1'>
+                        Welcome to Dev-Contract.com. In just a few short steps, we can help you generate a Web Development Services Contract for your freelance web development project. Click on the button below to get started!
+                    </Typography>
+                </div>
+                <div className='Page1BottomDiv'>
+                <Button variant="contained" color="primary" size='large' className={classes.button}>
+                    <p className='ButtonText'>Get Started</p>
+              </Button>   
+                </div>             
             </Paper>
         );
     }
