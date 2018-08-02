@@ -12,6 +12,7 @@ import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
 import { withStyles } from '@material-ui/core/styles';
 import { changePage } from '../../actions/pages';
+import { setDevInfo } from '../../actions/contractInfo';
 
 const styles = theme => ({
     root: {
@@ -24,15 +25,18 @@ const styles = theme => ({
     },
     PageFormInput: {
         margin: 20
-    }
+    },
+    button: {
+        margin: theme.spacing.unit,
+    },
 });
 
 class Page3A extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            age: '',
-            open: false,
+            devUSstate: '',
+            open: false
           };
     }
 
@@ -48,16 +52,61 @@ class Page3A extends Component {
     };
     
     handleClose = () => {
-    this.setState({ open: false });
+        this.setState({ open: false });
     };
     
     handleOpen = () => {
-    this.setState({ open: true });
+        this.setState({ open: true });
     };
+
+    handleFirstNameChange = e => {
+        this.setState({ firstName: e.target.value });
+        this.handleNextButtonStatus;
+    }
+
+    handleLastNameChange = e => {
+        this.setState({ lastName: e.target.value });
+        this.handleNextButtonStatus;
+    }
+
+    handleStreetChange = e => {
+        this.setState({ street: e.target.value });
+        this.handleNextButtonStatus;
+    }
+
+    handleCityChange = e => {
+        this.setState({ city: e.target.value });
+        this.handleNextButtonStatus;
+    }
+
+    handleUSstateChange = e => {
+        this.setState({ devUSstate: e.target.value });
+        console.log(this.state.devUSstate);
+        this.handleNextButtonStatus;
+    }
+
+    handleZipChange = e => {
+        this.setState({ zip: e.target.value });
+        this.handleNextButtonStatus;
+    }
+
+    handlePreviousPageButtonClick = () => {
+        this.props.changePage(2);
+    }
+
+    handleNextPageButtonClick = () => {
+        //ToDo: authentication
+        const { firstName, lastName, street, city, devUSstate, zip } = this.state;
+        this.props.setDevInfo({
+            firstName, lastName, street, city, devUSstate, zip
+        });
+        this.props.changePage(4);
+    }
 
     render() {
         const { classes, USstates } = this.props;
-        console.log(USstates);
+        const { devUSstate, nextButtonDisabled } = this.state;
+
         return (
             <Paper classes={{root: classes.root}} elevation={1}>
                 <div className='FormHeaderContainer'>
@@ -75,24 +124,29 @@ class Page3A extends Component {
                             <Input 
                                 autoFocus={true}
                                 placeholder="First Name"
+                                onChange={this.handleFirstNameChange}
                             >
                             </Input>
                         </div>
                         <div className='FormInputContainer'>
                             <Input 
-                                autoFocus={true}
                                 placeholder="Last Name"
+                                onChange={this.handleLastNameChange}
                             >
                             </Input>
                         </div>
                         <div className='FormInputContainer'>
                             <Input
-                                placeholder="Street Address">
+                                placeholder="Street Address"
+                                onChange={this.handleStreetChange}
+                            >
                             </Input>
                         </div>
                         <div className='FormInputContainer'>
                             <Input
-                                placeholder="City">
+                                placeholder="City"
+                                onChange={this.handleCityChange}
+                            >
                             </Input>
                         </div>
                         <div className='FormInputContainer'>
@@ -100,13 +154,14 @@ class Page3A extends Component {
                             <InputLabel htmlFor="demo-controlled-open-select">State</InputLabel>
                             <Select
                                 open={this.state.open}
+                                onChange={this.handleUSstateChange}
                                 onClose={this.handleClose}
                                 onOpen={this.handleOpen}
-                                value={this.state.age}
+                                value={devUSstate}
                                 onChange={this.handleChange}
                                 IconComponent={'union'}
                                 inputProps={{
-                                name: 'states',
+                                name: 'devUSstate',
                                 id: 'controlled-open-select',
                                 }}
                             >
@@ -121,17 +176,41 @@ class Page3A extends Component {
                         </div>
                         <div className='FormInputContainer'>
                             <Input
-                                placeholder="Zip Code">
+                                placeholder="Zip Code"
+                                onChange={this.handleZipChange}
+                            >
                             </Input>
                         </div>
                 </FormControl>
+                <div className='PageBottomDiv'>
+                    <Button
+                        variant="contained"
+                        color="primary"
+                        size='medium'
+                        className={classes.button}
+                        onClick={this.handlePreviousPageButtonClick}
+                        >
+                        <p className='ButtonText'>Previous</p>
+                    </Button>  
+                    <Button
+                        variant="contained"
+                        color="primary"
+                        size='medium'
+                        disabled={false}
+                        className={classes.button}
+                        onClick={this.handleNextPageButtonClick}
+                        >
+                        <p className='ButtonText'>Next</p>
+                    </Button>  
+                </div>
             </Paper>
         );
     }
 }
 
 const mapDispatchToProps = (dispatch) => ({
-    changePage: (pageNumber) => dispatch(changePage(pageNumber))
+    changePage: (pageNumber) => dispatch(changePage(pageNumber)),
+    setDevInfo: (devInfo) => dispatch(setDevInfo(devInfo))
 });
 
 const mapStateToProps = (state) => ({
