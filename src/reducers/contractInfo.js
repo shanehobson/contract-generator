@@ -20,7 +20,24 @@ const contractInfoReducer = (state = contractInfoDefaultState, action) => {
                     USstate: action.devInfo.devUSstate,
                     zip: action.devInfo.zip,
                 }
-            };
+        };
+        case 'SET_CUSTOMER_TYPE':
+        return {
+            ...state,
+            customerType: action.customerType
+        };
+        case 'SET_CUSTOMER_INFO':
+        return {
+            ...state,
+            customerInfo: {
+                firstName: action.customerInfo.firstName,
+                lastName: action.customerInfo.lastName,
+                street: action.customerInfo.street,
+                city: action.customerInfo.city,
+                USstate: action.customerInfo.customerUSstate,
+                zip: action.customerInfo.zip,
+            }
+        };
         default:
             return state;
     }

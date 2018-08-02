@@ -30,7 +30,7 @@ class Page1 extends Component {
         return (
             <Paper classes={{root: this.props.classes.root}} elevation={1}>
                 <div className='Page1TopDiv'>
-                    <Typography variant='display1'>
+                    <Typography variant='title'>
                         Welcome to Dev-Contract.com. In just a few short steps, we can help you generate a Web Development Services Contract for your freelance web development project. Click on the button below to get started!
                     </Typography>
                 </div>

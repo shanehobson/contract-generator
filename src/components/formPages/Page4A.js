@@ -12,7 +12,7 @@ import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
 import { withStyles } from '@material-ui/core/styles';
 import { changePage } from '../../actions/pages';
-import { setDevInfo } from '../../actions/contractInfo';
+import { setCustomerInfo } from '../../actions/contractInfo';
 
 const styles = theme => ({
     root: {
@@ -31,11 +31,11 @@ const styles = theme => ({
     },
 });
 
-class Page3A extends Component {
+class Page4A extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            devUSstate: '',
+            customerUSstate: '',
             open: false,
             error: ''
           };
@@ -70,7 +70,7 @@ class Page3A extends Component {
     }
 
     handleUSstateChange = e => {
-        this.setState({ devUSstate: e.target.value });
+        this.setState({ customerUSstate: e.target.value });
     }
 
     handleZipChange = e => {
@@ -78,7 +78,7 @@ class Page3A extends Component {
     }
 
     handlePreviousPageButtonClick = () => {
-        this.props.changePage(2);
+        this.props.changePage(4);
     }
 
     handleNextPageButtonClick = () => {
@@ -86,13 +86,13 @@ class Page3A extends Component {
             this.state.lastName &&
             this.state.street &&
             this.state.city &&
-            this.state.devUSstate &&
+            this.state.customerUSstate &&
             this.state.zip) {   
-            const { firstName, lastName, street, city, devUSstate, zip } = this.state;
-            this.props.setDevInfo({
-                firstName, lastName, street, city, devUSstate, zip
+            const { firstName, lastName, street, city, customerUSstate, zip } = this.state;
+            this.props.setCustomerInfo({
+                firstName, lastName, street, city, customerUSstate, zip
             });
-            this.props.changePage(4);
+            this.props.changePage(5);
         } else {
             this.setState({
                 error: 'Please complete all form fields before proceeding.'
@@ -102,18 +102,18 @@ class Page3A extends Component {
 
     render() {
         const { classes, USstates } = this.props;
-        const { devUSstate, nextButtonDisabled } = this.state;
+        const { customerUSstate, nextButtonDisabled } = this.state;
 
         return (
             <Paper classes={{root: classes.root}} elevation={1}>
                 <div className='FormHeaderContainer'>
                     <Typography variant='title'>
-                        Developer Information
+                        Customer Information
                     </Typography>
                 </div>
                 <div className='FormHeaderContainer'>
                     <Typography variant='subheading'>
-                        Please enter the following information about you, the Developer. This will be your official name and address for the contract.
+                        Please enter the following information about your client/customer. This will be the client/customer's official name and address for the contract.
                     </Typography>
                 </div>
                 {
@@ -163,11 +163,11 @@ class Page3A extends Component {
                                 onChange={this.handleUSstateChange}
                                 onClose={this.handleClose}
                                 onOpen={this.handleOpen}
-                                value={devUSstate}
+                                value={customerUSstate}
                                 onChange={this.handleChange}
                                 IconComponent={'union'}
                                 inputProps={{
-                                name: 'devUSstate',
+                                name: 'customerUSstate',
                                 id: 'controlled-open-select',
                                 }}
                             >
@@ -216,20 +216,11 @@ class Page3A extends Component {
 
 const mapDispatchToProps = (dispatch) => ({
     changePage: (pageNumber) => dispatch(changePage(pageNumber)),
-    setDevInfo: (devInfo) => dispatch(setDevInfo(devInfo))
+    setCustomerInfo: (customerInfo) => dispatch(setCustomerInfo(customerInfo))
 });
 
 const mapStateToProps = (state) => ({
     USstates: state.USstates
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(withStyles(styles)(Page3A));
-
-// <InputLabel>
-// <Typography variant='subheading'>
-//     Developer's Full Name
-// </Typography>
-// </InputLabel>
-
-//debugging alex
-
+export default connect(mapStateToProps, mapDispatchToProps)(withStyles(styles)(Page4A));

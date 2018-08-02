@@ -31,7 +31,7 @@ const styles = theme => ({
     },
 });
 
-class Page3A extends Component {
+class Page3B extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -53,12 +53,8 @@ class Page3A extends Component {
         this.setState({ open: true });
     };
 
-    handleFirstNameChange = e => {
+    handlefirstNameChange = e => {
         this.setState({ firstName: e.target.value });
-    }
-
-    handleLastNameChange = e => {
-        this.setState({ lastName: e.target.value });
     }
 
     handleStreetChange = e => {
@@ -71,6 +67,7 @@ class Page3A extends Component {
 
     handleUSstateChange = e => {
         this.setState({ devUSstate: e.target.value });
+        console.log(this.state.devUSstate);
     }
 
     handleZipChange = e => {
@@ -83,14 +80,13 @@ class Page3A extends Component {
 
     handleNextPageButtonClick = () => {
         if (this.state.firstName &&
-            this.state.lastName &&
             this.state.street &&
             this.state.city &&
             this.state.devUSstate &&
             this.state.zip) {   
-            const { firstName, lastName, street, city, devUSstate, zip } = this.state;
+            const { firstName, street, city, devUSstate, zip } = this.state;
             this.props.setDevInfo({
-                firstName, lastName, street, city, devUSstate, zip
+                firstName, street, city, devUSstate, zip
             });
             this.props.changePage(4);
         } else {
@@ -113,7 +109,7 @@ class Page3A extends Component {
                 </div>
                 <div className='FormHeaderContainer'>
                     <Typography variant='subheading'>
-                        Please enter the following information about you, the Developer. This will be your official name and address for the contract.
+                        Please provide your company's official name and registered address.
                     </Typography>
                 </div>
                 {
@@ -129,21 +125,14 @@ class Page3A extends Component {
                         <div className='FormInputContainer'>
                             <Input 
                                 autoFocus={true}
-                                placeholder="First Name"
-                                onChange={this.handleFirstNameChange}
-                            >
-                            </Input>
-                        </div>
-                        <div className='FormInputContainer'>
-                            <Input 
-                                placeholder="Last Name"
-                                onChange={this.handleLastNameChange}
+                                placeholder="Company Name"
+                                onChange={this.handlefirstNameChange}
                             >
                             </Input>
                         </div>
                         <div className='FormInputContainer'>
                             <Input
-                                placeholder="Street Address"
+                                placeholder="Address"
                                 onChange={this.handleStreetChange}
                             >
                             </Input>
@@ -223,7 +212,7 @@ const mapStateToProps = (state) => ({
     USstates: state.USstates
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(withStyles(styles)(Page3A));
+export default connect(mapStateToProps, mapDispatchToProps)(withStyles(styles)(Page3B));
 
 // <InputLabel>
 // <Typography variant='subheading'>
