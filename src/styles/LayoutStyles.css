@@ -1,3 +1,7 @@
+html {
+    font-size: 62.5%
+}
+
 body {
     background: #eaeaea;
 }
@@ -9,4 +13,25 @@ body {
 
 a {
     text-decoration: none;
+}
+
+.PageBottomDiv {
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+}
+
+.FormInputContainer {
+    margin: 50px;
+}
+
+.FormInputGroupContainer {
+    display: flex;
+}
+
+.FormHeaderContainer {
+    margin-top: 5%;
+    padding-left: 10%;
+    padding-right: 10%;
+    text-align: center;
 }

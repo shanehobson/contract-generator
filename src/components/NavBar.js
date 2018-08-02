@@ -16,13 +16,13 @@ const NavBar = () => {
             <AppBar position='static'>
                 <Toolbar>
                     <Hidden xsDown>
-                        <Typography variant='display1' color='inherit' className='NavBar-flex'>
+                        <Typography variant='title' color='inherit' className='NavBar-flex'>
                             <a href='#' className='Navbar-navBarIconLink'>LoremIpsum</a>
                         </Typography>
                     </Hidden>
                     <div className='Navbar-navLinks'>
-                        <Button color='inherit' className='NavBar-navLink'><Typography color='inherit' variant='headline'>About Us</Typography></Button>
-                        <Button color='inherit' className='NavBar-navLink'><Typography color='inherit' variant='headline'>Contact</Typography></Button>
+                        <Button color='inherit' className='NavBar-navLink'><Typography color='inherit'>About Us</Typography></Button>
+                        <Button color='inherit' className='NavBar-navLink'><Typography color='inherit'>Contact</Typography></Button>
                     </div>
                 </Toolbar>
             </AppBar>

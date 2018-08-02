@@ -34,8 +34,14 @@ class Page1 extends Component {
                         Welcome to Dev-Contract.com. In just a few short steps, we can help you generate a Web Development Services Contract for your freelance web development project. Click on the button below to get started!
                     </Typography>
                 </div>
-                <div className='Page1BottomDiv'>
-                <Button variant="contained" color="primary" size='large' className={classes.button}>
+                <div className='PageBottomDiv'>
+                <Button
+                    variant="contained"
+                    color="primary"
+                    size='large'
+                    className={classes.button}
+                    onClick={this.handleNextPageButtonClick}
+                    >
                     <p className='ButtonText'>Get Started</p>
               </Button>   
                 </div>             

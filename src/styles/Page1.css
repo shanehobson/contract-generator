@@ -3,12 +3,6 @@
     text-align: center;
 }
 
-.Page1BottomDiv {
-    margin: 0 auto;
-    display: flex;
-    justify-content: center;
-}
-
 .ButtonText {
     font-size: 1.5rem;
 }
