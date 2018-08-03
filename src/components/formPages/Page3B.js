@@ -12,7 +12,7 @@ import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
 import { withStyles } from '@material-ui/core/styles';
 import { changePage } from '../../actions/pages';
-import { setDevInfo } from '../../actions/contractInfo';
+import { setCustomerInfo } from '../../actions/contractInfo';
 
 const styles = theme => ({
     root: {
@@ -33,11 +33,16 @@ const styles = theme => ({
 
 class Page3B extends Component {
     constructor(props) {
+        console.log('Entered 3B constructor');
         super(props);
         this.state = {
-            devUSstate: '',
             open: false,
-            error: ''
+            error: '',
+            firstName: this.props.customerInfo.firstName ? this.props.customerInfo.firstName : '',
+            street: this.props.customerInfo.street ? this.props.customerInfo.street : '',
+            city: this.props.customerInfo.city ? this.props.customerInfo.city: '',
+            customerUSstate: this.props.customerInfo.customerUSstate ? this.props.customerInfo.customerUSstate : '',
+            zip: this.props.customerInfo.zip ? this.props.customerInfo.zip : ''
           };
     }
 
@@ -66,8 +71,7 @@ class Page3B extends Component {
     }
 
     handleUSstateChange = e => {
-        this.setState({ devUSstate: e.target.value });
-        console.log(this.state.devUSstate);
+        this.setState({ customerUSstate: e.target.value });
     }
 
     handleZipChange = e => {
@@ -82,11 +86,11 @@ class Page3B extends Component {
         if (this.state.firstName &&
             this.state.street &&
             this.state.city &&
-            this.state.devUSstate &&
+            this.state.customerUSstate &&
             this.state.zip) {   
-            const { firstName, street, city, devUSstate, zip } = this.state;
-            this.props.setDevInfo({
-                firstName, street, city, devUSstate, zip
+            const { firstName, street, city, customerUSstate, zip } = this.state;
+            this.props.setCustomerInfo({
+                firstName, street, city, customerUSstate, zip
             });
             this.props.changePage(4);
         } else {
@@ -98,7 +102,7 @@ class Page3B extends Component {
 
     render() {
         const { classes, USstates } = this.props;
-        const { devUSstate, nextButtonDisabled } = this.state;
+        const { firstName, street, city, customerUSstate, zip, nextButtonDisabled } = this.state;
 
         return (
             <Paper classes={{root: classes.root}} elevation={1}>
@@ -121,19 +125,21 @@ class Page3B extends Component {
                         </div>
                     )
                 }
-                <FormControl component="fieldset" styles={{ margin: 20 }}>
+                <div>
                         <div className='FormInputContainer'>
                             <Input 
                                 autoFocus={true}
                                 placeholder="Company Name"
                                 onChange={this.handlefirstNameChange}
+                                value={firstName}
                             >
                             </Input>
                         </div>
                         <div className='FormInputContainer'>
                             <Input
-                                placeholder="Address"
+                                placeholder="Street Address"
                                 onChange={this.handleStreetChange}
+                                value={street}
                             >
                             </Input>
                         </div>
@@ -141,6 +147,7 @@ class Page3B extends Component {
                             <Input
                                 placeholder="City"
                                 onChange={this.handleCityChange}
+                                value={city}
                             >
                             </Input>
                         </div>
@@ -152,11 +159,11 @@ class Page3B extends Component {
                                 onChange={this.handleUSstateChange}
                                 onClose={this.handleClose}
                                 onOpen={this.handleOpen}
-                                value={devUSstate}
+                                value={customerUSstate}
                                 onChange={this.handleChange}
                                 IconComponent={'union'}
                                 inputProps={{
-                                name: 'devUSstate',
+                                name: 'customerUSstate',
                                 id: 'controlled-open-select',
                                 }}
                             >
@@ -173,10 +180,11 @@ class Page3B extends Component {
                             <Input
                                 placeholder="Zip Code"
                                 onChange={this.handleZipChange}
+                                value={zip}
                             >
                             </Input>
                         </div>
-                </FormControl>
+                </div>
                 <div className='PageBottomDiv'>
                     <Button
                         variant="contained"
@@ -205,11 +213,12 @@ class Page3B extends Component {
 
 const mapDispatchToProps = (dispatch) => ({
     changePage: (pageNumber) => dispatch(changePage(pageNumber)),
-    setDevInfo: (devInfo) => dispatch(setDevInfo(devInfo))
+    setCustomerInfo: (customerInfo) => dispatch(setCustomerInfo(customerInfo))
 });
 
 const mapStateToProps = (state) => ({
-    USstates: state.USstates
+    USstates: state.USstates,
+    customerInfo: state.contractInfo.customerInfo
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(withStyles(styles)(Page3B));

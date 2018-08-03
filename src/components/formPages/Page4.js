@@ -58,7 +58,7 @@ class Page4 extends Component {
     }
 
     handlePreviousPageButtonClick = () => {
-        if (this.state.devType === 'individual') {
+        if (this.props.devType === 'individual') {
             this.props.changePage('3A');
         } else {
             this.props.changePage('3B');
@@ -76,7 +76,7 @@ class Page4 extends Component {
 
     render() {
         const { error, customerType, nextButtonDisabled } = this.state;
-        const { classes } = this.props;
+        const { classes, devType } = this.props;
         return (
             <Paper classes={{root: classes.root}} elevation={1}>
                 <FormControl error={error} component="fieldset" className={classes.formControl}>

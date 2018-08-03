@@ -33,28 +33,19 @@ const styles = theme => ({
 
 class Page3A extends Component {
     constructor(props) {
-        console.log('Entered constructor');
+        console.log('Entered 3A constructor');
         super(props);
         this.state = {
-            devUSstate: '',
             open: false,
             error: '',
             firstName: this.props.devInfo.firstName ? this.props.devInfo.firstName : '',
-            lastName: this.props.devInfo.firstName ? this.props.devInfo.firstName : '',
-            street: this.props.devInfo.firstName ? this.props.devInfo.firstName : '',
-            city: this.props.devInfo.firstName ? this.props.devInfo.firstName : '',
-            zip: this.props.devInfo.firstName ? this.props.devInfo.firstName : '',
-            page: this.props.pages
+            lastName: this.props.devInfo.lastName ? this.props.devInfo.lastName : '',
+            street: this.props.devInfo.street ? this.props.devInfo.street : '',
+            city: this.props.devInfo.city ? this.props.devInfo.city : '',
+            city: this.props.devInfo.devUSstate ? this.props.devInfo.devUSstate : '',
+            zip: this.props.devInfo.zip ? this.props.devInfo.zip : '',
           };
     }
-
-    componentWillReceiveProps(nextProps) {
-        console.log('Entered componentWillReceiveProps');
-        this.setState({ 
-            devInfo: nextProps.devInfo,
-            pages: nextProps.pages
-        });
-    };
 
     handleChange = event => {
         this.setState({ [event.target.name]: event.target.value });
@@ -117,7 +108,7 @@ class Page3A extends Component {
 
     render() {
         const { classes, USstates } = this.props;
-        const { nextButtonDisabled, devUSstate } = this.state;
+        const { firstName, lastName, street, city, devUSstate, zip, nextButtonDisabled } = this.state;
         
         return (
             <Paper classes={{root: classes.root}} elevation={1}>
@@ -245,7 +236,6 @@ const mapDispatchToProps = (dispatch) => ({
 const mapStateToProps = (state) => ({
     USstates: state.USstates,
     devInfo: state.contractInfo.devInfo,
-    page: state.pages
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(withStyles(styles)(Page3A));
