@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import FormControl from '@material-ui/core/FormControl';
@@ -35,6 +36,7 @@ class Page4A extends Component {
     constructor(props) {
         console.log('Entered 4A constructor');
         super(props);
+
         this.state = {
             open: false,
             error: '',
@@ -45,10 +47,10 @@ class Page4A extends Component {
             customerUSstate: this.props.customerInfo.customerUSstate ? this.props.customerInfo.customerUSstate : '',
             zip: this.props.customerInfo.zip ? this.props.customerInfo.zip : '',
         };
-    }
+    };
 
-    handleChange = event => {
-        this.setState({ [event.target.name]: event.target.value });
+    handleChange = e => {
+        this.setState({ [e.target.name]: e.target.value });
     };
     
     handleClose = () => {
@@ -61,31 +63,31 @@ class Page4A extends Component {
 
     handleFirstNameChange = e => {
         this.setState({ firstName: e.target.value });
-    }
+    };
 
     handleLastNameChange = e => {
         this.setState({ lastName: e.target.value });
-    }
+    };
 
     handleStreetChange = e => {
         this.setState({ street: e.target.value });
-    }
+    };
 
     handleCityChange = e => {
         this.setState({ city: e.target.value });
-    }
+    };
 
     handleUSstateChange = e => {
         this.setState({ customerUSstate: e.target.value });
-    }
+    };
 
     handleZipChange = e => {
         this.setState({ zip: e.target.value });
-    }
+    };
 
     handlePreviousPageButtonClick = () => {
         this.props.changePage(4);
-    }
+    };
 
     handleNextPageButtonClick = () => {
         if (this.state.firstName &&
@@ -104,7 +106,7 @@ class Page4A extends Component {
                 error: 'Please complete all form fields before proceeding.'
             })
         }
-    }
+    };
 
     render() {
         const { classes, USstates } = this.props;
@@ -122,15 +124,15 @@ class Page4A extends Component {
                         Please enter the following information about your client/customer. This will be the client/customer's official name and address for the contract.
                     </Typography>
                 </div>
-                {
-                    this.state.error && (
-                        <div className='FormHeaderContainer'>
-                            <Typography variant='subheading' style={{ color: 'red'}}>
-                               {this.state.error}
-                            </Typography>
-                        </div>
-                    )
-                }
+                    {
+                        this.state.error && (
+                            <div className='FormHeaderContainer'>
+                                <Typography variant='subheading' style={{ color: 'red'}}>
+                                {this.state.error}
+                                </Typography>
+                            </div>
+                        )
+                    }
                 <div>
                         <div className='FormInputContainer'>
                             <Input 
@@ -223,7 +225,14 @@ class Page4A extends Component {
             </Paper>
         );
     }
-}
+};
+
+Page4A.propTypes = {
+    classes: PropTypes.object.isRequired,
+    changePage: PropTypes.func.isRequired,
+    setCustomerInfo: PropTypes.func.isRequired,
+    USstates: PropTypes.object.isRequired
+};
 
 const mapDispatchToProps = (dispatch) => ({
     changePage: (pageNumber) => dispatch(changePage(pageNumber)),

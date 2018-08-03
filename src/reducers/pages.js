@@ -1,5 +1,5 @@
 const pagesDefaultState = {
-    currentPage: '4B'
+    currentPage: '1'
 };
 
 const pagesReducer = (state = pagesDefaultState, action) => {

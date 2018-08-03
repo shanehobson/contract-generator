@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import FormControl from '@material-ui/core/FormControl';
@@ -35,6 +36,7 @@ class Page3B extends Component {
     constructor(props) {
         console.log('Entered 3B constructor');
         super(props);
+
         this.state = {
             open: false,
             error: '',
@@ -44,10 +46,10 @@ class Page3B extends Component {
             devUSstate: this.props.devInfo.devUSstate ? this.props.devInfo.devUSstate : '',
             zip: this.props.devInfo.zip ? this.props.devInfo.zip : ''
           };
-    }
+    };
 
-    handleChange = event => {
-        this.setState({ [event.target.name]: event.target.value });
+    handleChange = e => {
+        this.setState({ [e.target.name]: e.target.value });
     };
     
     handleClose = () => {
@@ -60,27 +62,27 @@ class Page3B extends Component {
 
     handlefirstNameChange = e => {
         this.setState({ firstName: e.target.value });
-    }
+    };
 
     handleStreetChange = e => {
         this.setState({ street: e.target.value });
-    }
+    };
 
     handleCityChange = e => {
         this.setState({ city: e.target.value });
-    }
+    };
 
     handleUSstateChange = e => {
         this.setState({ devUSstate: e.target.value });
-    }
+    };
 
     handleZipChange = e => {
         this.setState({ zip: e.target.value });
-    }
+    };
 
     handlePreviousPageButtonClick = () => {
         this.props.changePage(2);
-    }
+    };
 
     handleNextPageButtonClick = () => {
         if (this.state.firstName &&
@@ -98,7 +100,7 @@ class Page3B extends Component {
                 error: 'Please complete all form fields before proceeding.'
             })
         }
-    }
+    };
 
     render() {
         const { classes, USstates } = this.props;
@@ -116,15 +118,15 @@ class Page3B extends Component {
                         Please provide your company's official name and registered address.
                     </Typography>
                 </div>
-                {
-                    this.state.error && (
-                        <div className='FormHeaderContainer'>
-                            <Typography variant='subheading' style={{ color: 'red'}}>
-                               {this.state.error}
-                            </Typography>
-                        </div>
-                    )
-                }
+                    {
+                        this.state.error && (
+                            <div className='FormHeaderContainer'>
+                                <Typography variant='subheading' style={{ color: 'red'}}>
+                                {this.state.error}
+                                </Typography>
+                            </div>
+                        )
+                    }
                 <div>
                         <div className='FormInputContainer'>
                             <Input 
@@ -210,6 +212,13 @@ class Page3B extends Component {
         );
     }
 }
+
+Page3B.propTypes = {
+    classes: PropTypes.object.isRequired,
+    changePage: PropTypes.func.isRequired,
+    setDevInfo: PropTypes.func.isRequired,
+    USstates: PropTypes.object.isRequired
+};
 
 const mapDispatchToProps = (dispatch) => ({
     changePage: (pageNumber) => dispatch(changePage(pageNumber)),

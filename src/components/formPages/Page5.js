@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';
@@ -25,14 +26,20 @@ class Page5 extends Component {
     // }
 
     render() {
+        const { classes } = this.props;
         return (
-            <Paper classes={{root: this.props.classes.root}} elevation={1}>
+            <Paper classes={{root: classes.root}} elevation={1}>
                 Page 5
                 <button onClick={this.handlePreviousPageButtonClick}>Previous Page</button>
             </Paper>
         );
     }
-}
+};
+
+Page5.propTypes = {
+    classes: PropTypes.object.isRequired,
+    changePage: PropTypes.func.isRequired
+};
 
 const mapDispatchToProps = (dispatch) => ({
     changePage: (pageNumber) => dispatch(changePage(pageNumber))

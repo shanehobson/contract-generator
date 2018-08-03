@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import FormControl from '@material-ui/core/FormControl';
@@ -34,6 +35,7 @@ const styles = theme => ({
 
 class Page2 extends Component {
     constructor(props) {
+        console.log('Entered 2 constructor');
         super(props);
 
         this.state = {
@@ -41,25 +43,25 @@ class Page2 extends Component {
             devType: '',
             nextButtonDisabled: true
         }
-    }
+    };
 
     handleDevTypeChangeIndividual = () => {
         this.setState(() => ({ 
             devType: 'individual',
             nextButtonDisabled: false
         }));
-    }
+    };
 
     handleDevTypeChangeBusiness = () => {
         this.setState(() => ({ 
             devType: 'business',
             nextButtonDisabled: false
         }));
-    }
+    };
 
     handlePreviousPageButtonClick = () => {
         this.props.changePage(1);
-    }
+    };
 
     handleNextPageButtonClick = () => {
         if (this.state.devType === 'individual') {
@@ -68,7 +70,7 @@ class Page2 extends Component {
             this.props.changePage('3B');
         }
         this.props.setDevType(this.state.devType);
-    }
+    };
 
     render() {
         const { error, devType, nextButtonDisabled } = this.state;
@@ -123,6 +125,11 @@ class Page2 extends Component {
     }
 }
 
+Page2.propTypes = {
+    classes: PropTypes.object.isRequired,
+    changePage: PropTypes.func.isRequired
+};
+
 const mapDispatchToProps = (dispatch) => ({
     changePage: (pageNumber) => dispatch(changePage(pageNumber)),
     setDevType: (devType) => dispatch(setDevType(devType))
@@ -133,5 +140,3 @@ const mapStateToProps = (state) => ({
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(withStyles(styles)(Page2));
-
-//Use this if I want to display an error in the future: <FormHelperText>You can display an error</FormHelperText>

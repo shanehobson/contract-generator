@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import FormControl from '@material-ui/core/FormControl';
@@ -35,6 +36,7 @@ class Page4B extends Component {
     constructor(props) {
         console.log('Entered 4B constructor');
         super(props);
+
         this.state = {
             open: false,
             error: '',
@@ -44,10 +46,10 @@ class Page4B extends Component {
             customerUSstate: this.props.customerInfo.customerUSstate ? this.props.customerInfo.customerUSstate : '',
             zip: this.props.customerInfo.zip ? this.props.customerInfo.zip : '',
         };
-    }
+    };
 
-    handleChange = event => {
-        this.setState({ [event.target.name]: event.target.value });
+    handleChange = e => {
+        this.setState({ [e.target.name]: e.target.value });
     };
     
     handleClose = () => {
@@ -60,28 +62,28 @@ class Page4B extends Component {
 
     handlefirstNameChange = e => {
         this.setState({ firstName: e.target.value });
-    }
+    };
 
     handleStreetChange = e => {
         this.setState({ street: e.target.value });
-    }
+    };
 
     handleCityChange = e => {
         this.setState({ city: e.target.value });
-    }
+    };
 
     handleUSstateChange = e => {
         this.setState({ customerUSstate: e.target.value });
         console.log(this.state.customerUSstate);
-    }
+    };
 
     handleZipChange = e => {
         this.setState({ zip: e.target.value });
-    }
+    };
 
     handlePreviousPageButtonClick = () => {
         this.props.changePage(4);
-    }
+    };
 
     handleNextPageButtonClick = () => {
         if (this.state.firstName &&
@@ -99,7 +101,7 @@ class Page4B extends Component {
                 error: 'Please complete all form fields before proceeding.'
             })
         }
-    }
+    };
 
     render() {
         const { classes, USstates } = this.props;
@@ -117,15 +119,15 @@ class Page4B extends Component {
                         Please provide the official name and registered address of your client/customer.
                     </Typography>
                 </div>
-                {
-                    this.state.error && (
-                        <div className='FormHeaderContainer'>
-                            <Typography variant='subheading' style={{ color: 'red'}}>
-                               {this.state.error}
-                            </Typography>
-                        </div>
-                    )
-                }
+                    {
+                        this.state.error && (
+                            <div className='FormHeaderContainer'>
+                                <Typography variant='subheading' style={{ color: 'red'}}>
+                                {this.state.error}
+                                </Typography>
+                            </div>
+                        )
+                    }
                 <div>
                         <div className='FormInputContainer'>
                             <Input 
@@ -210,7 +212,14 @@ class Page4B extends Component {
             </Paper>
         );
     }
-}
+};
+
+Page4B.propTypes = {
+    classes: PropTypes.object.isRequired,
+    changePage: PropTypes.func.isRequired,
+    setCustomerInfo: PropTypes.func.isRequired,
+    USstates: PropTypes.object.isRequired
+};
 
 const mapDispatchToProps = (dispatch) => ({
     changePage: (pageNumber) => dispatch(changePage(pageNumber)),
