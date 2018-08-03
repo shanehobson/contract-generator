@@ -223,11 +223,5 @@ const mapStateToProps = (state) => ({
 
 export default connect(mapStateToProps, mapDispatchToProps)(withStyles(styles)(Page3B));
 
-// <InputLabel>
-// <Typography variant='subheading'>
-//     Developer's Full Name
-// </Typography>
-// </InputLabel>
 
-//debugging alex
 

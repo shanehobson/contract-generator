@@ -33,12 +33,18 @@ const styles = theme => ({
 
 class Page4A extends Component {
     constructor(props) {
+        console.log('Entered 4A constructor');
         super(props);
         this.state = {
-            customerUSstate: '',
             open: false,
-            error: ''
-          };
+            error: '',
+            firstName: this.props.customerInfo.firstName ? this.props.customerInfo.firstName : '',
+            lastName: this.props.customerInfo.lastName ? this.props.customerInfo.lastName : '',
+            street: this.props.customerInfo.street ? this.props.customerInfo.street : '',
+            city: this.props.customerInfo.city ? this.props.customerInfo.city : '',
+            customerUSstate: this.props.customerInfo.customerUSstate ? this.props.customerInfo.customerUSstate : '',
+            zip: this.props.customerInfo.zip ? this.props.customerInfo.zip : '',
+        };
     }
 
     handleChange = event => {
@@ -102,7 +108,7 @@ class Page4A extends Component {
 
     render() {
         const { classes, USstates } = this.props;
-        const { customerUSstate, nextButtonDisabled } = this.state;
+        const { firstName, lastName, street, city, customerUSstate, zip, nextButtonDisabled } = this.state;
 
         return (
             <Paper classes={{root: classes.root}} elevation={1}>
@@ -125,12 +131,13 @@ class Page4A extends Component {
                         </div>
                     )
                 }
-                <FormControl component="fieldset" styles={{ margin: 20 }}>
+                <div>
                         <div className='FormInputContainer'>
                             <Input 
                                 autoFocus={true}
                                 placeholder="First Name"
                                 onChange={this.handleFirstNameChange}
+                                value={firstName}
                             >
                             </Input>
                         </div>
@@ -138,6 +145,7 @@ class Page4A extends Component {
                             <Input 
                                 placeholder="Last Name"
                                 onChange={this.handleLastNameChange}
+                                value={lastName}
                             >
                             </Input>
                         </div>
@@ -145,6 +153,7 @@ class Page4A extends Component {
                             <Input
                                 placeholder="Street Address"
                                 onChange={this.handleStreetChange}
+                                value={street}
                             >
                             </Input>
                         </div>
@@ -152,6 +161,7 @@ class Page4A extends Component {
                             <Input
                                 placeholder="City"
                                 onChange={this.handleCityChange}
+                                value={city}
                             >
                             </Input>
                         </div>
@@ -184,10 +194,11 @@ class Page4A extends Component {
                             <Input
                                 placeholder="Zip Code"
                                 onChange={this.handleZipChange}
+                                value={zip}
                             >
                             </Input>
                         </div>
-                </FormControl>
+                </div>
                 <div className='PageBottomDiv'>
                     <Button
                         variant="contained"
@@ -220,7 +231,8 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 const mapStateToProps = (state) => ({
-    USstates: state.USstates
+    USstates: state.USstates,
+    customerInfo: state.contractInfo.customerInfo
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(withStyles(styles)(Page4A));
