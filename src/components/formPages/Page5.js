@@ -18,11 +18,11 @@ class Page5 extends Component {
     }
 
     handlePreviousPageButtonClick = () => {
-        this.props.changePage(4);
+        this.props.changePage('4');
     }
 
     // handleNextPageButtonClick = () => {
-    //     this.props.changePage(6);
+    //     this.props.changePage('6');
     // }
 
     render() {

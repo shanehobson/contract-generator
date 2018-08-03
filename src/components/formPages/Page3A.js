@@ -86,7 +86,7 @@ class Page3A extends Component {
     };
 
     handlePreviousPageButtonClick = () => {
-        this.props.changePage(2);
+        this.props.changePage('2');
     };
 
     handleNextPageButtonClick = () => {
@@ -100,7 +100,7 @@ class Page3A extends Component {
             this.props.setDevInfo({
                 firstName, lastName, street, city, devUSstate, zip
             });
-            this.props.changePage(4);
+            this.props.changePage('4');
         } else {
             this.setState({
                 error: 'Please complete all form fields before proceeding.'

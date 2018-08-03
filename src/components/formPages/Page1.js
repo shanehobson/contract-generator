@@ -24,7 +24,7 @@ class Page1 extends Component {
     };
 
     handleNextPageButtonClick = () => {
-        this.props.changePage(2);
+        this.props.changePage('2');
     };
 
     render() {

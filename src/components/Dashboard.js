@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import { Grid } from '@material-ui/core';
 import '../styles/Dashboard.css';
 import '../styles/Page1.css';
@@ -18,22 +19,22 @@ import WorkingDocument from './WorkingDocument';
 class Dashboard extends Component {
   constructor(props) {
     super(props);
-  }
+  };
 
   render() {
     return (
       <div className='Dashboard-container'>
         <Grid container justify='center'>
           <Grid item sm={4}>
-            {this.props.pageNumber == 1 && <Page1 />}
-            {this.props.pageNumber == 2 && <Page2 />}
-            {this.props.pageNumber == '3A' && <Page3A />}
-            {this.props.pageNumber == '3B' && <Page3B />}
-            {this.props.pageNumber == 4 && <Page4 />}
-            {this.props.pageNumber == '4A' && <Page4A />}
-            {this.props.pageNumber == '4B' && <Page4B />}
-            {this.props.pageNumber == 5 && <Page5 />}
-            {this.props.pageNumber == 6 && <Page6 />}
+            {this.props.pageNumber === '1' && <Page1 />}
+            {this.props.pageNumber === '2' && <Page2 />}
+            {this.props.pageNumber === '3A' && <Page3A />}
+            {this.props.pageNumber === '3B' && <Page3B />}
+            {this.props.pageNumber === '4' && <Page4 />}
+            {this.props.pageNumber === '4A' && <Page4A />}
+            {this.props.pageNumber === '4B' && <Page4B />}
+            {this.props.pageNumber === '5' && <Page5 />}
+            {this.props.pageNumber === '6' && <Page6 />}
           </Grid>
           <Grid item sm={4}>
             <WorkingDocument />
@@ -42,7 +43,11 @@ class Dashboard extends Component {
       </div>
     );
   }
-}
+};
+
+Page1.PropTypes = {
+  pageNumber: PropTypes.string.isRequired
+};
 
 const mapStateToProps = (state) => ({
   pageNumber: state.pages.currentPage

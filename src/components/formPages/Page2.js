@@ -60,7 +60,7 @@ class Page2 extends Component {
     };
 
     handlePreviousPageButtonClick = () => {
-        this.props.changePage(1);
+        this.props.changePage('1');
     };
 
     handleNextPageButtonClick = () => {
