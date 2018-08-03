@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import FormControl from '@material-ui/core/FormControl';
@@ -33,16 +34,22 @@ const styles = theme => ({
 
 class Page4B extends Component {
     constructor(props) {
+        console.log('Entered 4B constructor');
         super(props);
-        this.state = {
-            customerUSstate: '',
-            open: false,
-            error: ''
-          };
-    }
 
-    handleChange = event => {
-        this.setState({ [event.target.name]: event.target.value });
+        this.state = {
+            open: false,
+            error: '',
+            firstName: this.props.customerInfo.firstName ? this.props.customerInfo.firstName : '',
+            street: this.props.customerInfo.street ? this.props.customerInfo.street : '',
+            city: this.props.customerInfo.city ? this.props.customerInfo.city : '',
+            customerUSstate: this.props.customerInfo.customerUSstate ? this.props.customerInfo.customerUSstate : '',
+            zip: this.props.customerInfo.zip ? this.props.customerInfo.zip : '',
+        };
+    };
+
+    handleChange = e => {
+        this.setState({ [e.target.name]: e.target.value });
     };
     
     handleClose = () => {
@@ -55,28 +62,28 @@ class Page4B extends Component {
 
     handlefirstNameChange = e => {
         this.setState({ firstName: e.target.value });
-    }
+    };
 
     handleStreetChange = e => {
         this.setState({ street: e.target.value });
-    }
+    };
 
     handleCityChange = e => {
         this.setState({ city: e.target.value });
-    }
+    };
 
     handleUSstateChange = e => {
         this.setState({ customerUSstate: e.target.value });
         console.log(this.state.customerUSstate);
-    }
+    };
 
     handleZipChange = e => {
         this.setState({ zip: e.target.value });
-    }
+    };
 
     handlePreviousPageButtonClick = () => {
-        this.props.changePage(4);
-    }
+        this.props.changePage('4');
+    };
 
     handleNextPageButtonClick = () => {
         if (this.state.firstName &&
@@ -88,17 +95,17 @@ class Page4B extends Component {
             this.props.setCustomerInfo({
                 firstName, street, city, customerUSstate, zip
             });
-            this.props.changePage(5);
+            this.props.changePage('5');
         } else {
             this.setState({
                 error: 'Please complete all form fields before proceeding.'
             })
         }
-    }
+    };
 
     render() {
         const { classes, USstates } = this.props;
-        const { customerUSstate, nextButtonDisabled } = this.state;
+        const { firstName, street, city, customerUSstate, zip, nextButtonDisabled } = this.state;
 
         return (
             <Paper classes={{root: classes.root}} elevation={1}>
@@ -112,28 +119,30 @@ class Page4B extends Component {
                         Please provide the official name and registered address of your client/customer.
                     </Typography>
                 </div>
-                {
-                    this.state.error && (
-                        <div className='FormHeaderContainer'>
-                            <Typography variant='subheading' style={{ color: 'red'}}>
-                               {this.state.error}
-                            </Typography>
-                        </div>
-                    )
-                }
-                <FormControl component="fieldset" styles={{ margin: 20 }}>
+                    {
+                        this.state.error && (
+                            <div className='FormHeaderContainer'>
+                                <Typography variant='subheading' style={{ color: 'red'}}>
+                                {this.state.error}
+                                </Typography>
+                            </div>
+                        )
+                    }
+                <div>
                         <div className='FormInputContainer'>
                             <Input 
                                 autoFocus={true}
                                 placeholder="Company Name"
                                 onChange={this.handlefirstNameChange}
+                                value={firstName}
                             >
                             </Input>
                         </div>
                         <div className='FormInputContainer'>
                             <Input
-                                placeholder="Address"
+                                placeholder="Street Address"
                                 onChange={this.handleStreetChange}
+                                value={street}
                             >
                             </Input>
                         </div>
@@ -141,6 +150,7 @@ class Page4B extends Component {
                             <Input
                                 placeholder="City"
                                 onChange={this.handleCityChange}
+                                value={city}
                             >
                             </Input>
                         </div>
@@ -173,10 +183,11 @@ class Page4B extends Component {
                             <Input
                                 placeholder="Zip Code"
                                 onChange={this.handleZipChange}
+                                value={zip}
                             >
                             </Input>
                         </div>
-                </FormControl>
+                </div>
                 <div className='PageBottomDiv'>
                     <Button
                         variant="contained"
@@ -201,7 +212,14 @@ class Page4B extends Component {
             </Paper>
         );
     }
-}
+};
+
+Page4B.propTypes = {
+    classes: PropTypes.object.isRequired,
+    changePage: PropTypes.func.isRequired,
+    setCustomerInfo: PropTypes.func.isRequired,
+    USstates: PropTypes.object.isRequired
+};
 
 const mapDispatchToProps = (dispatch) => ({
     changePage: (pageNumber) => dispatch(changePage(pageNumber)),
@@ -209,7 +227,8 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 const mapStateToProps = (state) => ({
-    USstates: state.USstates
+    USstates: state.USstates,
+    customerInfo: state.contractInfo.customerInfo
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(withStyles(styles)(Page4B));

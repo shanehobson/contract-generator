@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import FormControl from '@material-ui/core/FormControl';
@@ -33,16 +34,23 @@ const styles = theme => ({
 
 class Page4A extends Component {
     constructor(props) {
+        console.log('Entered 4A constructor');
         super(props);
-        this.state = {
-            customerUSstate: '',
-            open: false,
-            error: ''
-          };
-    }
 
-    handleChange = event => {
-        this.setState({ [event.target.name]: event.target.value });
+        this.state = {
+            open: false,
+            error: '',
+            firstName: this.props.customerInfo.firstName ? this.props.customerInfo.firstName : '',
+            lastName: this.props.customerInfo.lastName ? this.props.customerInfo.lastName : '',
+            street: this.props.customerInfo.street ? this.props.customerInfo.street : '',
+            city: this.props.customerInfo.city ? this.props.customerInfo.city : '',
+            customerUSstate: this.props.customerInfo.customerUSstate ? this.props.customerInfo.customerUSstate : '',
+            zip: this.props.customerInfo.zip ? this.props.customerInfo.zip : '',
+        };
+    };
+
+    handleChange = e => {
+        this.setState({ [e.target.name]: e.target.value });
     };
     
     handleClose = () => {
@@ -55,31 +63,31 @@ class Page4A extends Component {
 
     handleFirstNameChange = e => {
         this.setState({ firstName: e.target.value });
-    }
+    };
 
     handleLastNameChange = e => {
         this.setState({ lastName: e.target.value });
-    }
+    };
 
     handleStreetChange = e => {
         this.setState({ street: e.target.value });
-    }
+    };
 
     handleCityChange = e => {
         this.setState({ city: e.target.value });
-    }
+    };
 
     handleUSstateChange = e => {
         this.setState({ customerUSstate: e.target.value });
-    }
+    };
 
     handleZipChange = e => {
         this.setState({ zip: e.target.value });
-    }
+    };
 
     handlePreviousPageButtonClick = () => {
-        this.props.changePage(4);
-    }
+        this.props.changePage('4');
+    };
 
     handleNextPageButtonClick = () => {
         if (this.state.firstName &&
@@ -92,17 +100,17 @@ class Page4A extends Component {
             this.props.setCustomerInfo({
                 firstName, lastName, street, city, customerUSstate, zip
             });
-            this.props.changePage(5);
+            this.props.changePage('5');
         } else {
             this.setState({
                 error: 'Please complete all form fields before proceeding.'
             })
         }
-    }
+    };
 
     render() {
         const { classes, USstates } = this.props;
-        const { customerUSstate, nextButtonDisabled } = this.state;
+        const { firstName, lastName, street, city, customerUSstate, zip, nextButtonDisabled } = this.state;
 
         return (
             <Paper classes={{root: classes.root}} elevation={1}>
@@ -116,21 +124,22 @@ class Page4A extends Component {
                         Please enter the following information about your client/customer. This will be the client/customer's official name and address for the contract.
                     </Typography>
                 </div>
-                {
-                    this.state.error && (
-                        <div className='FormHeaderContainer'>
-                            <Typography variant='subheading' style={{ color: 'red'}}>
-                               {this.state.error}
-                            </Typography>
-                        </div>
-                    )
-                }
-                <FormControl component="fieldset" styles={{ margin: 20 }}>
+                    {
+                        this.state.error && (
+                            <div className='FormHeaderContainer'>
+                                <Typography variant='subheading' style={{ color: 'red'}}>
+                                {this.state.error}
+                                </Typography>
+                            </div>
+                        )
+                    }
+                <div>
                         <div className='FormInputContainer'>
                             <Input 
                                 autoFocus={true}
                                 placeholder="First Name"
                                 onChange={this.handleFirstNameChange}
+                                value={firstName}
                             >
                             </Input>
                         </div>
@@ -138,6 +147,7 @@ class Page4A extends Component {
                             <Input 
                                 placeholder="Last Name"
                                 onChange={this.handleLastNameChange}
+                                value={lastName}
                             >
                             </Input>
                         </div>
@@ -145,6 +155,7 @@ class Page4A extends Component {
                             <Input
                                 placeholder="Street Address"
                                 onChange={this.handleStreetChange}
+                                value={street}
                             >
                             </Input>
                         </div>
@@ -152,6 +163,7 @@ class Page4A extends Component {
                             <Input
                                 placeholder="City"
                                 onChange={this.handleCityChange}
+                                value={city}
                             >
                             </Input>
                         </div>
@@ -184,10 +196,11 @@ class Page4A extends Component {
                             <Input
                                 placeholder="Zip Code"
                                 onChange={this.handleZipChange}
+                                value={zip}
                             >
                             </Input>
                         </div>
-                </FormControl>
+                </div>
                 <div className='PageBottomDiv'>
                     <Button
                         variant="contained"
@@ -212,7 +225,14 @@ class Page4A extends Component {
             </Paper>
         );
     }
-}
+};
+
+Page4A.propTypes = {
+    classes: PropTypes.object.isRequired,
+    changePage: PropTypes.func.isRequired,
+    setCustomerInfo: PropTypes.func.isRequired,
+    USstates: PropTypes.object.isRequired
+};
 
 const mapDispatchToProps = (dispatch) => ({
     changePage: (pageNumber) => dispatch(changePage(pageNumber)),
@@ -220,7 +240,8 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 const mapStateToProps = (state) => ({
-    USstates: state.USstates
+    USstates: state.USstates,
+    customerInfo: state.contractInfo.customerInfo
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(withStyles(styles)(Page4A));

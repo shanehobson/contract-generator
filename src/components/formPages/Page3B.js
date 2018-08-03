@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import FormControl from '@material-ui/core/FormControl';
@@ -33,16 +34,22 @@ const styles = theme => ({
 
 class Page3B extends Component {
     constructor(props) {
+        console.log('Entered 3B constructor');
         super(props);
-        this.state = {
-            devUSstate: '',
-            open: false,
-            error: ''
-          };
-    }
 
-    handleChange = event => {
-        this.setState({ [event.target.name]: event.target.value });
+        this.state = {
+            open: false,
+            error: '',
+            firstName: this.props.devInfo.firstName ? this.props.devInfo.firstName : '',
+            street: this.props.devInfo.street ? this.props.devInfo.street : '',
+            city: this.props.devInfo.city ? this.props.devInfo.city: '',
+            devUSstate: this.props.devInfo.devUSstate ? this.props.devInfo.devUSstate : '',
+            zip: this.props.devInfo.zip ? this.props.devInfo.zip : ''
+          };
+    };
+
+    handleChange = e => {
+        this.setState({ [e.target.name]: e.target.value });
     };
     
     handleClose = () => {
@@ -55,28 +62,27 @@ class Page3B extends Component {
 
     handlefirstNameChange = e => {
         this.setState({ firstName: e.target.value });
-    }
+    };
 
     handleStreetChange = e => {
         this.setState({ street: e.target.value });
-    }
+    };
 
     handleCityChange = e => {
         this.setState({ city: e.target.value });
-    }
+    };
 
     handleUSstateChange = e => {
         this.setState({ devUSstate: e.target.value });
-        console.log(this.state.devUSstate);
-    }
+    };
 
     handleZipChange = e => {
         this.setState({ zip: e.target.value });
-    }
+    };
 
     handlePreviousPageButtonClick = () => {
-        this.props.changePage(2);
-    }
+        this.props.changePage('2');
+    };
 
     handleNextPageButtonClick = () => {
         if (this.state.firstName &&
@@ -88,17 +94,17 @@ class Page3B extends Component {
             this.props.setDevInfo({
                 firstName, street, city, devUSstate, zip
             });
-            this.props.changePage(4);
+            this.props.changePage('4');
         } else {
             this.setState({
                 error: 'Please complete all form fields before proceeding.'
             })
         }
-    }
+    };
 
     render() {
         const { classes, USstates } = this.props;
-        const { devUSstate, nextButtonDisabled } = this.state;
+        const { firstName, street, city, devUSstate, zip, nextButtonDisabled } = this.state;
 
         return (
             <Paper classes={{root: classes.root}} elevation={1}>
@@ -112,28 +118,30 @@ class Page3B extends Component {
                         Please provide your company's official name and registered address.
                     </Typography>
                 </div>
-                {
-                    this.state.error && (
-                        <div className='FormHeaderContainer'>
-                            <Typography variant='subheading' style={{ color: 'red'}}>
-                               {this.state.error}
-                            </Typography>
-                        </div>
-                    )
-                }
-                <FormControl component="fieldset" styles={{ margin: 20 }}>
+                    {
+                        this.state.error && (
+                            <div className='FormHeaderContainer'>
+                                <Typography variant='subheading' style={{ color: 'red'}}>
+                                {this.state.error}
+                                </Typography>
+                            </div>
+                        )
+                    }
+                <div>
                         <div className='FormInputContainer'>
                             <Input 
                                 autoFocus={true}
                                 placeholder="Company Name"
                                 onChange={this.handlefirstNameChange}
+                                value={firstName}
                             >
                             </Input>
                         </div>
                         <div className='FormInputContainer'>
                             <Input
-                                placeholder="Address"
+                                placeholder="Street Address"
                                 onChange={this.handleStreetChange}
+                                value={street}
                             >
                             </Input>
                         </div>
@@ -141,6 +149,7 @@ class Page3B extends Component {
                             <Input
                                 placeholder="City"
                                 onChange={this.handleCityChange}
+                                value={city}
                             >
                             </Input>
                         </div>
@@ -173,10 +182,11 @@ class Page3B extends Component {
                             <Input
                                 placeholder="Zip Code"
                                 onChange={this.handleZipChange}
+                                value={zip}
                             >
                             </Input>
                         </div>
-                </FormControl>
+                </div>
                 <div className='PageBottomDiv'>
                     <Button
                         variant="contained"
@@ -203,22 +213,24 @@ class Page3B extends Component {
     }
 }
 
+Page3B.propTypes = {
+    classes: PropTypes.object.isRequired,
+    changePage: PropTypes.func.isRequired,
+    setDevInfo: PropTypes.func.isRequired,
+    USstates: PropTypes.object.isRequired
+};
+
 const mapDispatchToProps = (dispatch) => ({
     changePage: (pageNumber) => dispatch(changePage(pageNumber)),
     setDevInfo: (devInfo) => dispatch(setDevInfo(devInfo))
 });
 
 const mapStateToProps = (state) => ({
-    USstates: state.USstates
+    USstates: state.USstates,
+    devInfo: state.contractInfo.devInfo
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(withStyles(styles)(Page3B));
 
-// <InputLabel>
-// <Typography variant='subheading'>
-//     Developer's Full Name
-// </Typography>
-// </InputLabel>
 
-//debugging alex
 

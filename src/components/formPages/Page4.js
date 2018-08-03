@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import FormControl from '@material-ui/core/FormControl';
@@ -34,6 +35,7 @@ const styles = theme => ({
 
 class Page4 extends Component {
     constructor(props) {
+        console.log('Entered 4 constructor');
         super(props);
 
         this.state = {
@@ -41,29 +43,29 @@ class Page4 extends Component {
             customerType: '',
             nextButtonDisabled: true
         }
-    }
+    };
 
     handleCustomerTypeChangeIndividual = () => {
         this.setState(() => ({ 
             customerType: 'individual',
             nextButtonDisabled: false
         }));
-    }
+    };
 
     handleCustomerTypeChangeBusiness = () => {
         this.setState(() => ({ 
             customerType: 'business',
             nextButtonDisabled: false
         }));
-    }
+    };
 
     handlePreviousPageButtonClick = () => {
-        if (this.state.devType === 'individual') {
+        if (this.props.devType === 'individual') {
             this.props.changePage('3A');
         } else {
             this.props.changePage('3B');
         }
-    }
+    };
 
     handleNextPageButtonClick = () => {
         if (this.state.customerType === 'individual') {
@@ -72,11 +74,11 @@ class Page4 extends Component {
             this.props.changePage('4B');
         }
         this.props.setCustomerType(this.state.customerType);
-    }
+    };
 
     render() {
         const { error, customerType, nextButtonDisabled } = this.state;
-        const { classes } = this.props;
+        const { classes, devType } = this.props;
         return (
             <Paper classes={{root: classes.root}} elevation={1}>
                 <FormControl error={error} component="fieldset" className={classes.formControl}>
@@ -125,7 +127,13 @@ class Page4 extends Component {
             </Paper>
         );
     }
-}
+};
+
+Page4.propTypes = {
+    classes: PropTypes.object.isRequired,
+    changePage: PropTypes.func.isRequired,
+    devType: PropTypes.string.isRequired
+};
 
 const mapDispatchToProps = (dispatch) => ({
     changePage: (pageNumber) => dispatch(changePage(pageNumber)),
@@ -138,5 +146,3 @@ const mapStateToProps = (state) => ({
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(withStyles(styles)(Page4));
-
-//Use this if I want to display an error in the future: <FormHelperText>You can display an error</FormHelperText>
