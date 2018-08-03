@@ -12,7 +12,7 @@ import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
 import { withStyles } from '@material-ui/core/styles';
 import { changePage } from '../../actions/pages';
-import { setCustomerInfo } from '../../actions/contractInfo';
+import { setDevInfo } from '../../actions/contractInfo';
 
 const styles = theme => ({
     root: {
@@ -38,11 +38,11 @@ class Page3B extends Component {
         this.state = {
             open: false,
             error: '',
-            firstName: this.props.customerInfo.firstName ? this.props.customerInfo.firstName : '',
-            street: this.props.customerInfo.street ? this.props.customerInfo.street : '',
-            city: this.props.customerInfo.city ? this.props.customerInfo.city: '',
-            customerUSstate: this.props.customerInfo.customerUSstate ? this.props.customerInfo.customerUSstate : '',
-            zip: this.props.customerInfo.zip ? this.props.customerInfo.zip : ''
+            firstName: this.props.devInfo.firstName ? this.props.devInfo.firstName : '',
+            street: this.props.devInfo.street ? this.props.devInfo.street : '',
+            city: this.props.devInfo.city ? this.props.devInfo.city: '',
+            devUSstate: this.props.devInfo.devUSstate ? this.props.devInfo.devUSstate : '',
+            zip: this.props.devInfo.zip ? this.props.devInfo.zip : ''
           };
     }
 
@@ -71,7 +71,7 @@ class Page3B extends Component {
     }
 
     handleUSstateChange = e => {
-        this.setState({ customerUSstate: e.target.value });
+        this.setState({ devUSstate: e.target.value });
     }
 
     handleZipChange = e => {
@@ -86,11 +86,11 @@ class Page3B extends Component {
         if (this.state.firstName &&
             this.state.street &&
             this.state.city &&
-            this.state.customerUSstate &&
+            this.state.devUSstate &&
             this.state.zip) {   
-            const { firstName, street, city, customerUSstate, zip } = this.state;
-            this.props.setCustomerInfo({
-                firstName, street, city, customerUSstate, zip
+            const { firstName, street, city, devUSstate, zip } = this.state;
+            this.props.setDevInfo({
+                firstName, street, city, devUSstate, zip
             });
             this.props.changePage(4);
         } else {
@@ -102,7 +102,7 @@ class Page3B extends Component {
 
     render() {
         const { classes, USstates } = this.props;
-        const { firstName, street, city, customerUSstate, zip, nextButtonDisabled } = this.state;
+        const { firstName, street, city, devUSstate, zip, nextButtonDisabled } = this.state;
 
         return (
             <Paper classes={{root: classes.root}} elevation={1}>
@@ -159,11 +159,11 @@ class Page3B extends Component {
                                 onChange={this.handleUSstateChange}
                                 onClose={this.handleClose}
                                 onOpen={this.handleOpen}
-                                value={customerUSstate}
+                                value={devUSstate}
                                 onChange={this.handleChange}
                                 IconComponent={'union'}
                                 inputProps={{
-                                name: 'customerUSstate',
+                                name: 'devUSstate',
                                 id: 'controlled-open-select',
                                 }}
                             >
@@ -213,12 +213,12 @@ class Page3B extends Component {
 
 const mapDispatchToProps = (dispatch) => ({
     changePage: (pageNumber) => dispatch(changePage(pageNumber)),
-    setCustomerInfo: (customerInfo) => dispatch(setCustomerInfo(customerInfo))
+    setDevInfo: (devInfo) => dispatch(setDevInfo(devInfo))
 });
 
 const mapStateToProps = (state) => ({
     USstates: state.USstates,
-    customerInfo: state.contractInfo.customerInfo
+    devInfo: state.contractInfo.devInfo
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(withStyles(styles)(Page3B));
