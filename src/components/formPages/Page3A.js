@@ -33,13 +33,28 @@ const styles = theme => ({
 
 class Page3A extends Component {
     constructor(props) {
+        console.log('Entered constructor');
         super(props);
         this.state = {
             devUSstate: '',
             open: false,
-            error: ''
+            error: '',
+            firstName: this.props.devInfo.firstName ? this.props.devInfo.firstName : '',
+            lastName: this.props.devInfo.firstName ? this.props.devInfo.firstName : '',
+            street: this.props.devInfo.firstName ? this.props.devInfo.firstName : '',
+            city: this.props.devInfo.firstName ? this.props.devInfo.firstName : '',
+            zip: this.props.devInfo.firstName ? this.props.devInfo.firstName : '',
+            page: this.props.pages
           };
     }
+
+    componentWillReceiveProps(nextProps) {
+        console.log('Entered componentWillReceiveProps');
+        this.setState({ 
+            devInfo: nextProps.devInfo,
+            pages: nextProps.pages
+        });
+    };
 
     handleChange = event => {
         this.setState({ [event.target.name]: event.target.value });
@@ -106,6 +121,8 @@ class Page3A extends Component {
         
         return (
             <Paper classes={{root: classes.root}} elevation={1}>
+                <div>{this.props.devInfo.firstName}</div>
+                <div>{this.props.devInfo.lastName}</div>
                 <div className='FormHeaderContainer'>
                     <Typography variant='title'>
                         Developer Information
@@ -125,7 +142,7 @@ class Page3A extends Component {
                         </div>
                     )
                 }
-                <FormControl component="fieldset" styles={{ margin: 20 }}>
+                <div>
                     
                         <div className='FormInputContainer'>
                             <Input
@@ -140,6 +157,7 @@ class Page3A extends Component {
                             <Input 
                                 placeholder="Last Name"
                                 onChange={this.handleLastNameChange}
+                                value={this.state.lastName}
                             >
                             </Input>
                         </div>
@@ -147,6 +165,7 @@ class Page3A extends Component {
                             <Input
                                 placeholder="Street Address"
                                 onChange={this.handleStreetChange}
+                                value={this.state.street}
                             >
                             </Input>
                         </div>
@@ -154,6 +173,7 @@ class Page3A extends Component {
                             <Input
                                 placeholder="City"
                                 onChange={this.handleCityChange}
+                                value={this.state.city}
                             >
                             </Input>
                         </div>
@@ -186,10 +206,11 @@ class Page3A extends Component {
                             <Input
                                 placeholder="Zip Code"
                                 onChange={this.handleZipChange}
+                                value={this.state.zip}
                             >
                             </Input>
                         </div>
-                </FormControl>
+                </div>
                 <div className='PageBottomDiv'>
                     <Button
                         variant="contained"
@@ -223,16 +244,12 @@ const mapDispatchToProps = (dispatch) => ({
 
 const mapStateToProps = (state) => ({
     USstates: state.USstates,
-    devInfo: state.contractInfo.devInfo
+    devInfo: state.contractInfo.devInfo,
+    page: state.pages
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(withStyles(styles)(Page3A));
 
-// <InputLabel>
-// <Typography variant='subheading'>
-//     Developer's Full Name
-// </Typography>
-// </InputLabel>
 
-//debugging alex
 
+//<FormControl component="fieldset" styles={{ margin: 20 }}>

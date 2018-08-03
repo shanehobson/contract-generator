@@ -5,7 +5,8 @@ const contractInfoDefaultState = {
         street: '',
         city: '',
         USstate: '',
-        zip: ''
+        zip: '',
+        change: ''
     },
     customerInfo: {
         firstName: '',
