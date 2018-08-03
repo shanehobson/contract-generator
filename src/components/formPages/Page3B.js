@@ -31,7 +31,7 @@ const styles = theme => ({
     },
 });
 
-class Page3A extends Component {
+class Page3B extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -53,12 +53,8 @@ class Page3A extends Component {
         this.setState({ open: true });
     };
 
-    handleFirstNameChange = e => {
+    handlefirstNameChange = e => {
         this.setState({ firstName: e.target.value });
-    }
-
-    handleLastNameChange = e => {
-        this.setState({ lastName: e.target.value });
     }
 
     handleStreetChange = e => {
@@ -71,6 +67,7 @@ class Page3A extends Component {
 
     handleUSstateChange = e => {
         this.setState({ devUSstate: e.target.value });
+        console.log(this.state.devUSstate);
     }
 
     handleZipChange = e => {
@@ -83,14 +80,13 @@ class Page3A extends Component {
 
     handleNextPageButtonClick = () => {
         if (this.state.firstName &&
-            this.state.lastName &&
             this.state.street &&
             this.state.city &&
             this.state.devUSstate &&
             this.state.zip) {   
-            const { firstName, lastName, street, city, devUSstate, zip } = this.state;
+            const { firstName, street, city, devUSstate, zip } = this.state;
             this.props.setDevInfo({
-                firstName, lastName, street, city, devUSstate, zip
+                firstName, street, city, devUSstate, zip
             });
             this.props.changePage(4);
         } else {
@@ -102,8 +98,8 @@ class Page3A extends Component {
 
     render() {
         const { classes, USstates } = this.props;
-        const { nextButtonDisabled, devUSstate } = this.state;
-        
+        const { devUSstate, nextButtonDisabled } = this.state;
+
         return (
             <Paper classes={{root: classes.root}} elevation={1}>
                 <div className='FormHeaderContainer'>
@@ -113,7 +109,7 @@ class Page3A extends Component {
                 </div>
                 <div className='FormHeaderContainer'>
                     <Typography variant='subheading'>
-                        Please enter the following information about you, the Developer. This will be your official name and address for the contract.
+                        Please provide your company's official name and registered address.
                     </Typography>
                 </div>
                 {
@@ -126,26 +122,17 @@ class Page3A extends Component {
                     )
                 }
                 <FormControl component="fieldset" styles={{ margin: 20 }}>
-                    
-                        <div className='FormInputContainer'>
-                            <Input
-                                autoFocus={true}
-                                placeholder={'First Name'}
-                                onChange={this.handleFirstNameChange}
-                                value={this.state.firstName}
-                            >
-                            </Input>
-                        </div>
                         <div className='FormInputContainer'>
                             <Input 
-                                placeholder="Last Name"
-                                onChange={this.handleLastNameChange}
+                                autoFocus={true}
+                                placeholder="Company Name"
+                                onChange={this.handlefirstNameChange}
                             >
                             </Input>
                         </div>
                         <div className='FormInputContainer'>
                             <Input
-                                placeholder="Street Address"
+                                placeholder="Address"
                                 onChange={this.handleStreetChange}
                             >
                             </Input>
@@ -165,7 +152,7 @@ class Page3A extends Component {
                                 onChange={this.handleUSstateChange}
                                 onClose={this.handleClose}
                                 onOpen={this.handleOpen}
-                                value={devUSstate || ''}
+                                value={devUSstate}
                                 onChange={this.handleChange}
                                 IconComponent={'union'}
                                 inputProps={{
@@ -222,11 +209,10 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 const mapStateToProps = (state) => ({
-    USstates: state.USstates,
-    devInfo: state.contractInfo.devInfo
+    USstates: state.USstates
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(withStyles(styles)(Page3A));
+export default connect(mapStateToProps, mapDispatchToProps)(withStyles(styles)(Page3B));
 
 // <InputLabel>
 // <Typography variant='subheading'>
