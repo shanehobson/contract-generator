@@ -1,5 +1,20 @@
 const contractInfoDefaultState = {
-    
+    devInfo: {
+        firstName: '',
+        lastName: '',
+        street: '',
+        city: '',
+        USstate: '',
+        zip: ''
+    },
+    customerInfo: {
+        firstName: '',
+        lastName: '',
+        street: '',
+        city: '',
+        USstate: '',
+        zip: ''
+    }
 };
 
 const contractInfoReducer = (state = contractInfoDefaultState, action) => {
@@ -18,24 +33,24 @@ const contractInfoReducer = (state = contractInfoDefaultState, action) => {
                     street: action.devInfo.street,
                     city: action.devInfo.city,
                     USstate: action.devInfo.devUSstate,
-                    zip: action.devInfo.zip,
+                    zip: action.devInfo.zip
                 }
         };
         case 'SET_CUSTOMER_TYPE':
-        return {
-            ...state,
-            customerType: action.customerType
-        };
+            return {
+                ...state,
+                customerType: action.customerType
+            };
         case 'SET_CUSTOMER_INFO':
-        return {
-            ...state,
-            customerInfo: {
-                firstName: action.customerInfo.firstName,
-                lastName: action.customerInfo.lastName,
-                street: action.customerInfo.street,
-                city: action.customerInfo.city,
-                USstate: action.customerInfo.customerUSstate,
-                zip: action.customerInfo.zip,
+            return {
+                ...state,
+                customerInfo: {
+                    firstName: action.customerInfo.firstName,
+                    lastName: action.customerInfo.lastName,
+                    street: action.customerInfo.street,
+                    city: action.customerInfo.city,
+                    USstate: action.customerInfo.customerUSstate,
+                    zip: action.customerInfo.zip,
             }
         };
         default:

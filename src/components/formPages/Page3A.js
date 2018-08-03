@@ -102,8 +102,8 @@ class Page3A extends Component {
 
     render() {
         const { classes, USstates } = this.props;
-        const { devUSstate, nextButtonDisabled } = this.state;
-
+        const { nextButtonDisabled, devUSstate } = this.state;
+        
         return (
             <Paper classes={{root: classes.root}} elevation={1}>
                 <div className='FormHeaderContainer'>
@@ -126,11 +126,13 @@ class Page3A extends Component {
                     )
                 }
                 <FormControl component="fieldset" styles={{ margin: 20 }}>
+                    
                         <div className='FormInputContainer'>
-                            <Input 
+                            <Input
                                 autoFocus={true}
-                                placeholder="First Name"
+                                placeholder={'First Name'}
                                 onChange={this.handleFirstNameChange}
+                                value={this.state.firstName}
                             >
                             </Input>
                         </div>
@@ -163,7 +165,7 @@ class Page3A extends Component {
                                 onChange={this.handleUSstateChange}
                                 onClose={this.handleClose}
                                 onOpen={this.handleOpen}
-                                value={devUSstate}
+                                value={devUSstate || ''}
                                 onChange={this.handleChange}
                                 IconComponent={'union'}
                                 inputProps={{
@@ -220,7 +222,8 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 const mapStateToProps = (state) => ({
-    USstates: state.USstates
+    USstates: state.USstates,
+    devInfo: state.contractInfo.devInfo
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(withStyles(styles)(Page3A));

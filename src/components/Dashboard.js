@@ -33,6 +33,7 @@ class Dashboard extends Component {
             {this.props.pageNumber == '4A' && <Page4A />}
             {this.props.pageNumber == '4B' && <Page4B />}
             {this.props.pageNumber == 5 && <Page5 />}
+            {this.props.pageNumber == 6 && <Page6 />}
           </Grid>
           <Grid item sm={4}>
             <WorkingDocument />
