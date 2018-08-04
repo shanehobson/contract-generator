@@ -14,7 +14,8 @@ const contractInfoDefaultState = {
         city: '',
         USstate: '',
         zip: ''
-    }
+    },
+    description: ''
 };
 
 const contractInfoReducer = (state = contractInfoDefaultState, action) => {
@@ -53,6 +54,11 @@ const contractInfoReducer = (state = contractInfoDefaultState, action) => {
                     zip: action.customerInfo.zip,
             }
         };
+        case 'SET_DESCRIPTION':
+            return {
+                ...state,
+                description: action.description
+            };
         default:
             return state;
     }
