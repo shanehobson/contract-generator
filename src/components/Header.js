@@ -4,11 +4,13 @@ import Grid from '@material-ui/core/Grid';
 
 const Header = () => (
     <div className='Header-headerContainer'>
-        <Grid container direction='column' justify='space-around' alignItems='center' className='Header-gridContainer'>
+        <Grid container direction='column' justify='space-around' alignContent='center' alignItems='center' className='Header-gridContainer'>
             <Grid item>
-                <Typography variant='display3' color='primary'>
-                    Lorem Ipsum Dolor
-                </Typography>
+                <div className='Header-headerTextContainer'>
+                    <Typography variant='headline' color='primary'>
+                        Create a legally binding contract for your freelance web development project in minutes.
+                    </Typography>
+                </div>
             </Grid>
         </Grid>
     </div>

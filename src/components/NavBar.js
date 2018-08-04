@@ -17,7 +17,7 @@ const NavBar = () => {
                 <Toolbar>
                     <Hidden xsDown>
                         <Typography variant='title' color='inherit' className='NavBar-flex'>
-                            <a href='#' className='Navbar-navBarIconLink'>LoremIpsum</a>
+                            <a href='#' className='Navbar-navBarIconLink'>Dev-Contract<span style={{ color: '#b1b1b1' }}>.com</span></a>
                         </Typography>
                     </Hidden>
                     <div className='Navbar-navLinks'>
