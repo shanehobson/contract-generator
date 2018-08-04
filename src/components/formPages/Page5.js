@@ -12,7 +12,7 @@ import { setDescription } from '../../actions/contractInfo';
 
 const styles = theme => ({
     root: {
-        minHeight: 600,
+        minHeight: 720,
         paddingTop: theme.spacing.unit * 2,
         paddingBottom: theme.spacing.unit
     },
@@ -53,7 +53,11 @@ class Page5 extends Component {
     };
 
     handlePreviousPageButtonClick = () => {
-        this.props.changePage('4');
+        if (this.props.customerType === 'individual') {
+            this.props.changePage('4A');
+        } else {
+            this.props.changePage('4B');
+        }
     };
 
     handleNextPageButtonClick = () => {
@@ -101,7 +105,7 @@ class Page5 extends Component {
                     <TextField 
                         autoFocus={true}
                         multiline
-                        rows={20}
+                        rows={15}
                         fullWidth
                         placeholder="Enter your Project Description..."
                         onChange={this.handleDescriptionChange}

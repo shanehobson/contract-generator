@@ -1,15 +1,13 @@
 const contractInfoDefaultState = {
     devInfo: {
-        firstName: '',
-        lastName: '',
+        name: '',
         street: '',
         city: '',
         USstate: '',
         zip: ''
     },
     customerInfo: {
-        firstName: '',
-        lastName: '',
+        name: '',
         street: '',
         city: '',
         USstate: '',
@@ -29,8 +27,7 @@ const contractInfoReducer = (state = contractInfoDefaultState, action) => {
             return {
                 ...state,
                 devInfo: {
-                    firstName: action.devInfo.firstName,
-                    lastName: action.devInfo.lastName,
+                    name: action.devInfo.name,
                     street: action.devInfo.street,
                     city: action.devInfo.city,
                     USstate: action.devInfo.devUSstate,
@@ -46,8 +43,7 @@ const contractInfoReducer = (state = contractInfoDefaultState, action) => {
             return {
                 ...state,
                 customerInfo: {
-                    firstName: action.customerInfo.firstName,
-                    lastName: action.customerInfo.lastName,
+                    name: action.customerInfo.name,
                     street: action.customerInfo.street,
                     city: action.customerInfo.city,
                     USstate: action.customerInfo.customerUSstate,

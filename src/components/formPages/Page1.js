@@ -10,7 +10,7 @@ import { changePage } from '../../actions/pages';
 
 const style = theme => ({
     root: {
-        minHeight: 600
+        minHeight: 720
     },
     button: {
         margin: theme.spacing.unit

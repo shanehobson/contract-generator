@@ -7,7 +7,7 @@ import { changePage } from '../../actions/pages';
 
 const style = theme => ({
     root: {
-        minHeight: 600
+        height: 720
     }
 });
 
