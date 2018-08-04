@@ -64,7 +64,7 @@ class Page5 extends Component {
         if (this.state.description) {   
             const { description } = this.state;
             this.props.setDescription({ description });
-            this.props.changePage('5');
+            this.props.changePage('6');
         } else {
             this.setState({
                 error: 'Please complete complete the form before proceeding.'

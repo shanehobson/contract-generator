@@ -22,3 +22,8 @@ export const setDescription = ({ description }) => ({
     type: 'SET_DESCRIPTION',
     description
 });
+
+export const setSpecs = ({ specs }) => ({
+    type: 'SET_SPECS',
+    specs
+});
