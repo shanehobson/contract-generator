@@ -17,9 +17,9 @@ const style = theme => ({
     }
 });
 
-class Page1 extends Component {
+class Page9 extends Component {
     constructor(props) {
-        console.log('Entered 1 constructor');
+        console.log('Entered 9 constructor');
         super(props);
     };
 
@@ -33,26 +33,15 @@ class Page1 extends Component {
             <Paper classes={{root: this.props.classes.root}} elevation={1}>
                 <div className='Page1TopDiv'>
                     <Typography variant='title'>
-                        Welcome to Dev-Contract.com. In just a few short steps, we can help you generate a Web Development Services Contract for your freelance web development project. Click on the button below to get started!
+                         Placeholder page
                     </Typography>
-                </div>
-                <div className='PageBottomDiv'>
-                <Button
-                    variant="contained"
-                    color="primary"
-                    size='large'
-                    className={classes.button}
-                    onClick={this.handleNextPageButtonClick}
-                    >
-                    <p className='ButtonText'>Get Started</p>
-              </Button>   
-                </div>             
+                </div>           
             </Paper>
         );
     }
 };
 
-Page1.propTypes = {
+Page9.propTypes = {
     classes: PropTypes.object.isRequired,
     changePage: PropTypes.func.isRequired
 };
@@ -61,5 +50,5 @@ const mapDispatchToProps = (dispatch) => ({
     changePage: (pageNumber) => dispatch(changePage(pageNumber))
 });
 
-export default connect(undefined, mapDispatchToProps)(withStyles(style)(Page1));
+export default connect(undefined, mapDispatchToProps)(withStyles(style)(Page9));
 

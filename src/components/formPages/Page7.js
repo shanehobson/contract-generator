@@ -8,7 +8,7 @@ import Button from '@material-ui/core/Button';
 import MenuItem from '@material-ui/core/MenuItem';
 import { withStyles } from '@material-ui/core/styles';
 import { changePage } from '../../actions/pages';
-import { setDescription } from '../../actions/contractInfo';
+import { setPaymentTerms } from '../../actions/contractInfo';
 
 const styles = theme => ({
     root: {
@@ -24,15 +24,15 @@ const styles = theme => ({
     },
 });
 
-class Page5 extends Component {
+class Page7 extends Component {
     constructor(props) {
-        console.log('Entered 5 constructor');
+        console.log('Entered 7 constructor');
         super(props);
 
         this.state = {
             open: false,
             error: '',
-            description: this.props.description ? this.props.description : ''
+            paymentTerms: this.props.paymentTerms ? this.props.paymentTerms : ''
         };
     };
 
@@ -48,23 +48,25 @@ class Page5 extends Component {
         this.setState({ open: true });
     };
 
-    handleDescriptionChange = e => {
-        this.setState({ description: e.target.value });
+    handlePaymentTermsChange = e => {
+        this.setState({ paymentTerms: e.target.value });
     };
 
     handlePreviousPageButtonClick = () => {
-        if (this.props.customerType === 'individual') {
-            this.props.changePage('4A');
-        } else {
-            this.props.changePage('4B');
-        }
+            this.props.changePage('6');
     };
 
     handleNextPageButtonClick = () => {
-        if (this.state.description) {   
-            const { description } = this.state;
-            this.props.setDescription({ description });
-            this.props.changePage('6');
+        if (this.state.paymentTerms) {   
+            const { paymentTerms } = this.state;
+            this.props.setPaymentTerms({ paymentTerms });
+            if (this.props.devType === 'business') {
+                this.props.changePage('8A');
+            } else if (this.props.customerType === 'business') {
+                this.props.changePage('8B');
+            } else {
+                this.props.changePage('9');
+            }
         } else {
             this.setState({
                 error: 'Please complete complete the form before proceeding.'
@@ -74,19 +76,22 @@ class Page5 extends Component {
 
     render() {
         const { classes } = this.props;
-        const { description, nextButtonDisabled } = this.state;
+        const { paymentTerms, nextButtonDisabled } = this.state;
 
         return (
             <Paper classes={{root: classes.root}} elevation={1}>
                 <div className='AltFormContainer'>       
                     <div className='FormHeaderContainer'>
                         <Typography variant='title'>
-                            Description of Services
+                            Payment Terms
                         </Typography>
                     </div>
                     <div className='FormHeaderContainer'>
                         <Typography variant='subheading'>
-                            Please provide a description of the services you will provide. This description will be the official Project Description for the contract.
+                            Please provide the Payment Terms for the contract.
+                            For example, will there be one lump-sum payment once the project is completed?
+                            Or, will you be paid in installments as various sub-tasks are completed?
+                            Will you be paid an hourly rate or a fixed fee?
                         </Typography>
                     </div>
                     <div>
@@ -107,9 +112,9 @@ class Page5 extends Component {
                         multiline
                         rows={15}
                         fullWidth
-                        placeholder="Enter your Project Description..."
-                        onChange={this.handleDescriptionChange}
-                        value={description}
+                        placeholder="Enter Payment Terms..."
+                        onChange={this.handlePaymentTermsChange}
+                        value={paymentTerms}
                     >
                     </TextField>
                 </div>
@@ -141,21 +146,25 @@ class Page5 extends Component {
     }
 };
 
-Page5.propTypes = {
+Page7.propTypes = {
     classes: PropTypes.object.isRequired,
     changePage: PropTypes.func.isRequired,
-    description: PropTypes.string.isRequired
+    paymentTerms: PropTypes.string.isRequired,
+    devType: PropTypes.string.isRequired,
+    customerType: PropTypes.string.isRequired
 };
 
 const mapDispatchToProps = (dispatch) => ({
     changePage: (pageNumber) => dispatch(changePage(pageNumber)),
-    setDescription: (description) => dispatch(setDescription(description))
+    setPaymentTerms: (paymentTerms) => dispatch(setPaymentTerms(paymentTerms))
 });
 
 const mapStateToProps = (state) => ({
-    description: state.contractInfo.description
+    paymentTerms: state.contractInfo.paymentTerms,
+    devType: state.contractInfo.devType,
+    customerType: state.contractInfo.customerType
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(withStyles(styles)(Page5));
+export default connect(mapStateToProps, mapDispatchToProps)(withStyles(styles)(Page7));
 
 

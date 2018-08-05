@@ -18,7 +18,7 @@ import { setCustomerType } from '../../actions/contractInfo';
 
 const styles = theme => ({
     root: {
-        minHeight: 600,
+        minHeight: 720,
         display: 'flex',
         flexDirection: 'column',
         alignContent: 'center',

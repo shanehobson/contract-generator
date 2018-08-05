@@ -1,20 +1,31 @@
 const contractInfoDefaultState = {
     devInfo: {
-        firstName: '',
-        lastName: '',
+        name: '',
         street: '',
         city: '',
         USstate: '',
         zip: ''
     },
     customerInfo: {
-        firstName: '',
-        lastName: '',
+        name: '',
         street: '',
         city: '',
         USstate: '',
-        zip: ''
-    }
+        zip: '',
+    },
+    description: '',
+    specs: '',
+    paymentTerms: '',
+    sigInfoDev: {
+        sigName: '',
+        sigTitle: ''
+    },
+    sigInfoCustomer: {
+        sigName: '',
+        sigTitle: ''
+    },
+    devType: '',
+    customerType: ''
 };
 
 const contractInfoReducer = (state = contractInfoDefaultState, action) => {
@@ -28,14 +39,13 @@ const contractInfoReducer = (state = contractInfoDefaultState, action) => {
             return {
                 ...state,
                 devInfo: {
-                    firstName: action.devInfo.firstName,
-                    lastName: action.devInfo.lastName,
+                    name: action.devInfo.name,
                     street: action.devInfo.street,
                     city: action.devInfo.city,
                     USstate: action.devInfo.devUSstate,
                     zip: action.devInfo.zip
                 }
-        };
+            };
         case 'SET_CUSTOMER_TYPE':
             return {
                 ...state,
@@ -45,14 +55,44 @@ const contractInfoReducer = (state = contractInfoDefaultState, action) => {
             return {
                 ...state,
                 customerInfo: {
-                    firstName: action.customerInfo.firstName,
-                    lastName: action.customerInfo.lastName,
+                    name: action.customerInfo.name,
                     street: action.customerInfo.street,
                     city: action.customerInfo.city,
                     USstate: action.customerInfo.customerUSstate,
                     zip: action.customerInfo.zip,
             }
-        };
+            };
+        case 'SET_DESCRIPTION':
+            return {
+                ...state,
+                description: action.description
+            };
+        case 'SET_SPECS':
+            return {
+                ...state,
+                specs: action.specs
+            };
+        case 'SET_PAYMENT_TERMS':
+            return {
+                ...state,
+                paymentTerms: action.paymentTerms
+            };
+        case 'SET_SIG_INFO_DEV':
+            return {
+                ...state,
+                sigInfoDev: {
+                    sigName: action.sigName,
+                    sigTitle: action.sigTitle
+                }            
+            };
+        case 'SET_SIG_INFO_CUSTOMER':
+            return {
+                ...state,
+                sigInfoCustomer: {
+                    sigName: action.sigName,
+                    sigTitle: action.sigTitle
+                }            
+            };
         default:
             return state;
     }

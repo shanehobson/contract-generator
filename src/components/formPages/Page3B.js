@@ -17,7 +17,7 @@ import { setDevInfo } from '../../actions/contractInfo';
 
 const styles = theme => ({
     root: {
-        minHeight: 600,
+        minHeight: 720,
         display: 'flex',
         flexDirection: 'column',
         alignContent: 'center',
@@ -40,7 +40,7 @@ class Page3B extends Component {
         this.state = {
             open: false,
             error: '',
-            firstName: this.props.devInfo.firstName ? this.props.devInfo.firstName : '',
+            name: this.props.devInfo.name ? this.props.devInfo.name : '',
             street: this.props.devInfo.street ? this.props.devInfo.street : '',
             city: this.props.devInfo.city ? this.props.devInfo.city: '',
             devUSstate: this.props.devInfo.devUSstate ? this.props.devInfo.devUSstate : '',
@@ -60,8 +60,8 @@ class Page3B extends Component {
         this.setState({ open: true });
     };
 
-    handlefirstNameChange = e => {
-        this.setState({ firstName: e.target.value });
+    handleNameChange = e => {
+        this.setState({ name: e.target.value });
     };
 
     handleStreetChange = e => {
@@ -85,14 +85,14 @@ class Page3B extends Component {
     };
 
     handleNextPageButtonClick = () => {
-        if (this.state.firstName &&
+        if (this.state.name &&
             this.state.street &&
             this.state.city &&
             this.state.devUSstate &&
             this.state.zip) {   
-            const { firstName, street, city, devUSstate, zip } = this.state;
+            const { name, street, city, devUSstate, zip } = this.state;
             this.props.setDevInfo({
-                firstName, street, city, devUSstate, zip
+                name, street, city, devUSstate, zip
             });
             this.props.changePage('4');
         } else {
@@ -104,7 +104,7 @@ class Page3B extends Component {
 
     render() {
         const { classes, USstates } = this.props;
-        const { firstName, street, city, devUSstate, zip, nextButtonDisabled } = this.state;
+        const { name, street, city, devUSstate, zip, nextButtonDisabled } = this.state;
 
         return (
             <Paper classes={{root: classes.root}} elevation={1}>
@@ -132,8 +132,8 @@ class Page3B extends Component {
                             <Input 
                                 autoFocus={true}
                                 placeholder="Company Name"
-                                onChange={this.handlefirstNameChange}
-                                value={firstName}
+                                onChange={this.handleNameChange}
+                                value={name}
                             >
                             </Input>
                         </div>

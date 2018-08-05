@@ -17,7 +17,7 @@ import { setDevInfo } from '../../actions/contractInfo';
 
 const styles = theme => ({
     root: {
-        minHeight: 600,
+        minHeight: 720,
         display: 'flex',
         flexDirection: 'column',
         alignContent: 'center',
@@ -40,8 +40,7 @@ class Page3A extends Component {
         this.state = {
             open: false,
             error: '',
-            firstName: this.props.devInfo.firstName ? this.props.devInfo.firstName : '',
-            lastName: this.props.devInfo.lastName ? this.props.devInfo.lastName : '',
+            name: this.props.devInfo.name ? this.props.devInfo.name : '',
             street: this.props.devInfo.street ? this.props.devInfo.street : '',
             city: this.props.devInfo.city ? this.props.devInfo.city : '',
             devUSstate: this.props.devInfo.devUSstate ? this.props.devInfo.devUSstate : '',
@@ -61,13 +60,9 @@ class Page3A extends Component {
         this.setState({ open: true });
     };
 
-    handleFirstNameChange = e => {
-        this.setState({ firstName: e.target.value });
+    handleNameChange = e => {
+        this.setState({ name: e.target.value });
     };
-
-    handleLastNameChange = e => {
-        this.setState({ lastName: e.target.value });
-    }
 
     handleStreetChange = e => {
         this.setState({ street: e.target.value });
@@ -90,15 +85,14 @@ class Page3A extends Component {
     };
 
     handleNextPageButtonClick = () => {
-        if (this.state.firstName &&
-            this.state.lastName &&
+        if (this.state.name &&
             this.state.street &&
             this.state.city &&
             this.state.devUSstate &&
             this.state.zip) {   
-            const { firstName, lastName, street, city, devUSstate, zip } = this.state;
+            const { name, street, city, devUSstate, zip } = this.state;
             this.props.setDevInfo({
-                firstName, lastName, street, city, devUSstate, zip
+                name, street, city, devUSstate, zip
             });
             this.props.changePage('4');
         } else {
@@ -110,7 +104,7 @@ class Page3A extends Component {
 
     render() {
         const { classes, USstates } = this.props;
-        const { firstName, lastName, street, city, devUSstate, zip, nextButtonDisabled, error } = this.state;
+        const { name, street, city, devUSstate, zip, nextButtonDisabled, error } = this.state;
         
         return (
             <Paper classes={{root: classes.root}} elevation={1}>
@@ -138,17 +132,9 @@ class Page3A extends Component {
                         <div className='FormInputContainer'>
                             <Input
                                 autoFocus={true}
-                                placeholder={'First Name'}
-                                onChange={this.handleFirstNameChange}
-                                value={firstName}
-                            >
-                            </Input>
-                        </div>
-                        <div className='FormInputContainer'>
-                            <Input 
-                                placeholder="Last Name"
-                                onChange={this.handleLastNameChange}
-                                value={lastName}
+                                placeholder={'Full Name'}
+                                onChange={this.handleNameChange}
+                                value={name}
                             >
                             </Input>
                         </div>

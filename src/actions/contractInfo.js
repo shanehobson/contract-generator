@@ -3,9 +3,9 @@ export const setDevType = (devType) => ({
     devType
 });
 
-export const setDevInfo = ({ firstName, lastName, street, city, devUSstate, zip}) => ({
+export const setDevInfo = ({ name, street, city, devUSstate, zip }) => ({
     type: 'SET_DEV_INFO',
-    devInfo: { firstName, lastName, street, city, devUSstate, zip}
+    devInfo: { name, street, city, devUSstate, zip}
 });
 
 export const setCustomerType = (customerType) => ({
@@ -13,7 +13,34 @@ export const setCustomerType = (customerType) => ({
     customerType
 });
 
-export const setCustomerInfo = ({ firstName, lastName, street, city, customerUSstate, zip}) => ({
+export const setCustomerInfo = ({ name, street, city, customerUSstate, zip }) => ({
     type: 'SET_CUSTOMER_INFO',
-    customerInfo: { firstName, lastName, street, city, customerUSstate, zip}
+    customerInfo: { name, street, city, customerUSstate, zip}
+});
+
+export const setDescription = ({ description }) => ({
+    type: 'SET_DESCRIPTION',
+    description
+});
+
+export const setSpecs = ({ specs }) => ({
+    type: 'SET_SPECS',
+    specs
+});
+
+export const setPaymentTerms = ({ paymentTerms }) => ({
+    type: 'SET_PAYMENT_TERMS',
+    paymentTerms
+});
+
+export const setSigInfoDev = ({ sigName, sigTitle }) => ({
+    type: 'SET_SIG_INFO_DEV',
+    sigName,
+    sigTitle
+});
+
+export const setSigInfoCustomer = ({ sigName, sigTitle }) => ({
+    type: 'SET_SIG_INFO_CUSTOMER',
+        sigName,
+        sigTitle
 });

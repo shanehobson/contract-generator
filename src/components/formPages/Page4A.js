@@ -17,7 +17,7 @@ import { setCustomerInfo } from '../../actions/contractInfo';
 
 const styles = theme => ({
     root: {
-        minHeight: 600,
+        minHeight: 720,
         display: 'flex',
         flexDirection: 'column',
         alignContent: 'center',
@@ -40,8 +40,7 @@ class Page4A extends Component {
         this.state = {
             open: false,
             error: '',
-            firstName: this.props.customerInfo.firstName ? this.props.customerInfo.firstName : '',
-            lastName: this.props.customerInfo.lastName ? this.props.customerInfo.lastName : '',
+            name: this.props.customerInfo.name ? this.props.customerInfo.name : '',
             street: this.props.customerInfo.street ? this.props.customerInfo.street : '',
             city: this.props.customerInfo.city ? this.props.customerInfo.city : '',
             customerUSstate: this.props.customerInfo.customerUSstate ? this.props.customerInfo.customerUSstate : '',
@@ -61,12 +60,8 @@ class Page4A extends Component {
         this.setState({ open: true });
     };
 
-    handleFirstNameChange = e => {
-        this.setState({ firstName: e.target.value });
-    };
-
-    handleLastNameChange = e => {
-        this.setState({ lastName: e.target.value });
+    handleNameChange = e => {
+        this.setState({ name: e.target.value });
     };
 
     handleStreetChange = e => {
@@ -90,15 +85,14 @@ class Page4A extends Component {
     };
 
     handleNextPageButtonClick = () => {
-        if (this.state.firstName &&
-            this.state.lastName &&
+        if (this.state.name &&
             this.state.street &&
             this.state.city &&
             this.state.customerUSstate &&
             this.state.zip) {   
-            const { firstName, lastName, street, city, customerUSstate, zip } = this.state;
+            const { name, street, city, customerUSstate, zip } = this.state;
             this.props.setCustomerInfo({
-                firstName, lastName, street, city, customerUSstate, zip
+                name, street, city, customerUSstate, zip
             });
             this.props.changePage('5');
         } else {
@@ -110,7 +104,7 @@ class Page4A extends Component {
 
     render() {
         const { classes, USstates } = this.props;
-        const { firstName, lastName, street, city, customerUSstate, zip, nextButtonDisabled } = this.state;
+        const { name, street, city, customerUSstate, zip, nextButtonDisabled } = this.state;
 
         return (
             <Paper classes={{root: classes.root}} elevation={1}>
@@ -137,17 +131,9 @@ class Page4A extends Component {
                         <div className='FormInputContainer'>
                             <Input 
                                 autoFocus={true}
-                                placeholder="First Name"
-                                onChange={this.handleFirstNameChange}
-                                value={firstName}
-                            >
-                            </Input>
-                        </div>
-                        <div className='FormInputContainer'>
-                            <Input 
-                                placeholder="Last Name"
-                                onChange={this.handleLastNameChange}
-                                value={lastName}
+                                placeholder="Full Name"
+                                onChange={this.handleNameChange}
+                                value={name}
                             >
                             </Input>
                         </div>
