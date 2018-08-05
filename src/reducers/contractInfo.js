@@ -11,10 +11,21 @@ const contractInfoDefaultState = {
         street: '',
         city: '',
         USstate: '',
-        zip: ''
+        zip: '',
     },
     description: '',
-    specs: ''
+    specs: '',
+    paymentTerms: '',
+    sigInfoDev: {
+        sigName: '',
+        sigTitle: ''
+    },
+    sigInfoCustomer: {
+        sigName: '',
+        sigTitle: ''
+    },
+    devType: '',
+    customerType: ''
 };
 
 const contractInfoReducer = (state = contractInfoDefaultState, action) => {
@@ -56,10 +67,31 @@ const contractInfoReducer = (state = contractInfoDefaultState, action) => {
                 ...state,
                 description: action.description
             };
-            case 'SET_SPECS':
+        case 'SET_SPECS':
             return {
                 ...state,
                 specs: action.specs
+            };
+        case 'SET_PAYMENT_TERMS':
+            return {
+                ...state,
+                paymentTerms: action.paymentTerms
+            };
+        case 'SET_SIG_INFO_DEV':
+            return {
+                ...state,
+                sigInfoDev: {
+                    sigName: action.sigName,
+                    sigTitle: action.sigTitle
+                }            
+            };
+        case 'SET_SIG_INFO_CUSTOMER':
+            return {
+                ...state,
+                sigInfoCustomer: {
+                    sigName: action.sigName,
+                    sigTitle: action.sigTitle
+                }            
             };
         default:
             return state;

@@ -15,6 +15,9 @@ import Page4B from './formPages/Page4B';
 import Page5 from './formPages/Page5';
 import Page6 from './formPages/Page6';
 import Page7 from './formPages/Page7';
+import Page8A from './formPages/Page8A';
+import Page8B from './formPages/Page8B';
+import Page9 from './formPages/Page9';
 import WorkingDocument from './WorkingDocument';
 
 
@@ -38,6 +41,9 @@ class Dashboard extends Component {
             {this.props.pageNumber === '5' && <Page5 />}
             {this.props.pageNumber === '6' && <Page6 />}
             {this.props.pageNumber === '7' && <Page7 />}
+            {this.props.pageNumber === '8A' && <Page8A />}
+            {this.props.pageNumber === '8B' && <Page8B />}
+            {this.props.pageNumber === '9' && <Page9 />}
           </Grid>
           <Grid item sm={4}>
             <WorkingDocument />

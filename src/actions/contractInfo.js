@@ -27,3 +27,20 @@ export const setSpecs = ({ specs }) => ({
     type: 'SET_SPECS',
     specs
 });
+
+export const setPaymentTerms = ({ paymentTerms }) => ({
+    type: 'SET_PAYMENT_TERMS',
+    paymentTerms
+});
+
+export const setSigInfoDev = ({ sigName, sigTitle }) => ({
+    type: 'SET_SIG_INFO_DEV',
+    sigName,
+    sigTitle
+});
+
+export const setSigInfoCustomer = ({ sigName, sigTitle }) => ({
+    type: 'SET_SIG_INFO_CUSTOMER',
+        sigName,
+        sigTitle
+});
