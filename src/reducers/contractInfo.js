@@ -1,4 +1,6 @@
 const contractInfoDefaultState = {
+    devType: '',
+    customerType: '',
     devInfo: {
         name: '',
         street: '',
@@ -23,9 +25,7 @@ const contractInfoDefaultState = {
     sigInfoCustomer: {
         sigName: '',
         sigTitle: ''
-    },
-    devType: '',
-    customerType: ''
+    }
 };
 
 const contractInfoReducer = (state = contractInfoDefaultState, action) => {

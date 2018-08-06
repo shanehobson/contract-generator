@@ -5,6 +5,7 @@ import { Grid } from '@material-ui/core';
 import '../styles/Dashboard.css';
 import '../styles/Page1.css';
 import '../styles/LayoutStyles.css';
+import '../styles/WorkingDoc.css';
 import Page1 from './formPages/Page1';
 import Page2 from './formPages/Page2';
 import Page3A from './formPages/Page3A';
