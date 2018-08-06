@@ -6,6 +6,7 @@ import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import { withStyles } from '@material-ui/core/styles';
 import { generate } from '../documents/contract';
+import Contract from './Contract';
 
 
 const styles = theme => ({
@@ -96,11 +97,7 @@ class WorkingDocument extends Component {
                         <p className='ButtonText'>Generate PDF</p>
                     </Button> 
                 </div>
-                
-                <div id='workingDocContainer' style={{ height: 720, overflow: 'scroll', padding: 20 }}>
-                    <h1>Test Doc</h1>
-                    <p>hhhhhhhh sssssssssssss jjjjjjjjjjjjjjjjsgggggggg gggggggggg</p>
-                </div>
+                <Contract />
             </Paper>
         );
     }

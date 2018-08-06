@@ -1,0 +1,8 @@
+.Contract-ContractHeaderContainer {
+    display: flex;
+    justify-content: center;
+}
+
+#workingDocContainer {
+    padding: 20px;
+}
