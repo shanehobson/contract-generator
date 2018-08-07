@@ -43,7 +43,7 @@ class Page3B extends Component {
             name: this.props.devInfo.name ? this.props.devInfo.name : '',
             street: this.props.devInfo.street ? this.props.devInfo.street : '',
             city: this.props.devInfo.city ? this.props.devInfo.city: '',
-            devUSstate: this.props.devInfo.devUSstate ? this.props.devInfo.devUSstate : '',
+            devUSstate: this.props.devInfo.USstate ? this.props.devInfo.USstate : '',
             zip: this.props.devInfo.zip ? this.props.devInfo.zip : ''
           };
     };
@@ -154,29 +154,29 @@ class Page3B extends Component {
                             </Input>
                         </div>
                         <div className='FormInputContainer'>
-                            <FormControl className={classes.formControl}>
-                            <InputLabel htmlFor="demo-controlled-open-select">State</InputLabel>
-                            <Select
-                                open={this.state.open}
-                                onChange={this.handleUSstateChange}
-                                onClose={this.handleClose}
-                                onOpen={this.handleOpen}
-                                value={devUSstate}
-                                onChange={this.handleChange}
-                                IconComponent={'union'}
-                                inputProps={{
-                                name: 'devUSstate',
-                                id: 'controlled-open-select',
-                                }}
-                            >
-                            {
-                                USstates.USstates.map(USstate => (
-                                    <MenuItem key={USstate.abbreviation} value={USstate.name}>{USstate.name}</MenuItem>
-                                ))
-                            
-                            }
-                            </Select>
-                            </FormControl>
+                            <div>
+                                <InputLabel htmlFor="demo-controlled-open-select"><p style={{color: '#aaa'}}>State</p></InputLabel>
+                                <p> </p>
+                                <Select
+                                    open={this.state.open}
+                                    onChange={this.handleUSstateChange}
+                                    onClose={this.handleClose}
+                                    onOpen={this.handleOpen}
+                                    value={devUSstate ? USstates.USstates.find(USstate => USstate.name === devUSstate).name : ''}
+                                    onChange={this.handleChange}
+                                    inputProps={{
+                                    name: 'devUSstate',
+                                    id: 'controlled-open-select',
+                                    }}
+                                >
+                                {
+                                    USstates.USstates.map(USstate => (
+                                        <MenuItem key={USstate.abbreviation} value={USstate.name}>{USstate.name}</MenuItem>
+                                    ))
+                                
+                                }
+                                </Select>
+                            </div>
                         </div>
                         <div className='FormInputContainer'>
                             <Input
@@ -217,7 +217,8 @@ Page3B.propTypes = {
     classes: PropTypes.object.isRequired,
     changePage: PropTypes.func.isRequired,
     setDevInfo: PropTypes.func.isRequired,
-    USstates: PropTypes.object.isRequired
+    USstates: PropTypes.object.isRequired,
+    devInfo: PropTypes.object.isRequired
 };
 
 const mapDispatchToProps = (dispatch) => ({
