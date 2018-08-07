@@ -172,7 +172,7 @@ class Page4B extends Component {
                             >
                             {
                                 USstates.USstates.map(USstate => (
-                                    <MenuItem key={USstate.abbreviation} value={USstate.abbreviation}>{USstate.name}</MenuItem>
+                                    <MenuItem key={USstate.abbreviation} value={USstate.name}>{USstate.name}</MenuItem>
                                 ))
                             
                             }
