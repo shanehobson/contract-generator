@@ -43,7 +43,7 @@ class Page4B extends Component {
             name: this.props.customerInfo.name ? this.props.customerInfo.name : '',
             street: this.props.customerInfo.street ? this.props.customerInfo.street : '',
             city: this.props.customerInfo.city ? this.props.customerInfo.city : '',
-            customerUSstate: this.props.customerInfo.customerUSstate ? this.props.customerInfo.customerUSstate : '',
+            customerUSstate: this.props.customerInfo.USstate ? this.props.customerInfo.USstate : '',
             zip: this.props.customerInfo.zip ? this.props.customerInfo.zip : '',
         };
     };
@@ -155,29 +155,29 @@ class Page4B extends Component {
                             </Input>
                         </div>
                         <div className='FormInputContainer'>
-                            <FormControl className={classes.formControl}>
-                            <InputLabel htmlFor="demo-controlled-open-select">State</InputLabel>
-                            <Select
-                                open={this.state.open}
-                                onChange={this.handleUSstateChange}
-                                onClose={this.handleClose}
-                                onOpen={this.handleOpen}
-                                value={customerUSstate}
-                                onChange={this.handleChange}
-                                IconComponent={'union'}
-                                inputProps={{
-                                name: 'customerUSstate',
-                                id: 'controlled-open-select',
-                                }}
-                            >
-                            {
-                                USstates.USstates.map(USstate => (
-                                    <MenuItem key={USstate.abbreviation} value={USstate.name}>{USstate.name}</MenuItem>
-                                ))
-                            
-                            }
-                            </Select>
-                            </FormControl>
+                            <div>
+                                <InputLabel htmlFor="demo-controlled-open-select"><p style={{color: '#aaa'}}>State</p></InputLabel>
+                                <p> </p>
+                                <Select
+                                    open={this.state.open}
+                                    onChange={this.handleUSstateChange}
+                                    onClose={this.handleClose}
+                                    onOpen={this.handleOpen}
+                                    value={customerUSstate ? USstates.USstates.find(USstate => USstate.name === customerUSstate).name : ''}
+                                    onChange={this.handleChange}
+                                    inputProps={{
+                                    name: 'customerUSstate',
+                                    id: 'controlled-open-select',
+                                    }}
+                                >
+                                {
+                                    USstates.USstates.map(USstate => (
+                                        <MenuItem key={USstate.abbreviation} value={USstate.name}>{USstate.name}</MenuItem>
+                                    ))
+                                
+                                }
+                                </Select>
+                            </div>
                         </div>
                         <div className='FormInputContainer'>
                             <Input
@@ -218,7 +218,8 @@ Page4B.propTypes = {
     classes: PropTypes.object.isRequired,
     changePage: PropTypes.func.isRequired,
     setCustomerInfo: PropTypes.func.isRequired,
-    USstates: PropTypes.object.isRequired
+    USstates: PropTypes.object.isRequired,
+    customerInfo: PropTypes.object.isRequired
 };
 
 const mapDispatchToProps = (dispatch) => ({
