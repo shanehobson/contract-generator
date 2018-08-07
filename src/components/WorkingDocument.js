@@ -28,13 +28,15 @@ class WorkingDocument extends Component {
         console.log('Entered WorkingDocument constructor')
         super(props);
         this.state = {
-            formsAreComplete: false
+            formsAreComplete: false,
+            textColor: '#aaa'
         }
     };
 
     componentWillReceiveProps() {
         this.setState({
-            formsAreComplete: this.formsAreComplete()
+            formsAreComplete: this.formsAreComplete(),
+            textColor: this.formsAreComplete() ? '#000' : '#aaa'
         });
     };
 
@@ -81,24 +83,31 @@ class WorkingDocument extends Component {
     }
 
     render() {
-        const { formsAreComplete } = this.state;
+        const { formsAreComplete, textColor } = this.state;
         const { classes } = this.props;
 
         return (
             <Paper classes={{root: this.props.classes.root}} elevation={1}>
-                <div className='WorkingDoc-buttonContainer'>
-                    <Button
-                        variant="contained"
-                        color="primary"
-                        size='medium'
-                        className={classes.button}
-                        onClick={this.generatePDF}
-                        >
-                        <p className='ButtonText'>Generate PDF</p>
-                    </Button> 
-                </div>
-                <hr />
-                <div className='Contract-contractContainer'>
+                {   formsAreComplete ? 
+                        <div className='WorkingDoc-buttonContainer'> 
+                            <Button
+                                variant="contained"
+                                color="primary"
+                                size='medium'
+                                className={classes.button}
+                                onClick={this.generatePDF}
+                                >
+                                <p className='ButtonText'>Generate PDF</p>
+                            </Button> 
+                        </div> 
+                        :
+                        <div className='WorkingDoc-buttonContainer'>
+                            <Typography variant='display3' style={{color: 'red'}}>
+                                DRAFT
+                            </Typography>
+                        </div>
+                }
+                <div className='Contract-contractContainer' style={{color: `${textColor}`}}>
                     <Contract />
                 </div>
             </Paper>

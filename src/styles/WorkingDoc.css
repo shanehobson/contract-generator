@@ -1,9 +1,13 @@
+#workingDocContainer {
+    padding: 25px;
+}
 .WorkingDoc-buttonContainer {
     display: flex;
     justify-content: center;
-    padding-top: 10px;
+    padding-top: 25px;
+    margin-bottom: -5px;
 }
 .Contract-contractContainer {
-    height: 615px;
-    overflow: scroll;
+    height: 610px;
+    overflow-y: scroll;
 }
