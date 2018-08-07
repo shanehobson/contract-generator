@@ -97,7 +97,10 @@ class WorkingDocument extends Component {
                         <p className='ButtonText'>Generate PDF</p>
                     </Button> 
                 </div>
-                <Contract />
+                <hr />
+                <div className='Contract-contractContainer'>
+                    <Contract />
+                </div>
             </Paper>
         );
     }

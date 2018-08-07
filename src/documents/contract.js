@@ -29,7 +29,7 @@ const headerFooterFormatting = doc => {
 export const generate = workingDocElement => {
     const pdf = new jsPDF('p', 'pt', 'a4');
     pdf.setFontSize(18);
-    pdf.setFont('times');
+    pdf.setFontStyle('times');
     pdf.fromHTML(
         workingDocElement,
         margins.left,
