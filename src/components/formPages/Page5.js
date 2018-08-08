@@ -58,7 +58,7 @@ class Page5 extends Component {
         this.setState({ descriptionDialogOpen: true });
     };
 
-    handleClose = () => {
+    handleDialogClose = () => {
         this.setState({
             descriptionDialogOpen: false
         });
@@ -103,7 +103,7 @@ class Page5 extends Component {
                             <br />
                             <br />
                             <span
-                                style={{color: 'purple', cursor: 'pointer'}}
+                                style={{ color: 'purple', cursor: 'pointer', fontWeight: 'bold' }}
                                 onClick={this.handleLinkClicked}
                             >
                             Click here </span> to see some example Project Descriptions if you are unsure what to include.
@@ -156,7 +156,7 @@ class Page5 extends Component {
                         </Button>  
                     </div>
                 </div>
-                <DescriptionDialog open={this.state.descriptionDialogOpen} onClose={this.handleClose} />
+                <DescriptionDialog open={this.state.descriptionDialogOpen} onClose={this.handleDialogClose} />
             </Paper>
         );
     }

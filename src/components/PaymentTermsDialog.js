@@ -5,8 +5,9 @@ import PropTypes from 'prop-types';
 import Dialog from '@material-ui/core/Dialog';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
-import DialogTabContent1 from './DialogTabContent1';
-import DialogTabContent2 from './DialogTabContent2';
+import DialogTabContent1A from './DialogTabContent1A';
+import DialogTabContent2A from './DialogTabContent2A';
+import DialogTabContent3A from './DialogTabContent3A';
 
 const style = {
     tabLabel: {
@@ -14,7 +15,7 @@ const style = {
     }
 }
 
-class DescriptionDialog extends Component {
+class PaymentTermsDialog extends Component {
 
     state = {
         value: 0
@@ -35,20 +36,22 @@ class DescriptionDialog extends Component {
         return (
             <Dialog open={open} onClose={this.handleClose}>
                 <Tabs value={this.state.value} onChange={this.handleTabChange} fullWidth={true} >
-                    <Tab label="Basic Description" classes={{label: this.props.classes.tabLabel}} />
-                    <Tab label="Description With Timetable" classes={{label: this.props.classes.tabLabel}} />
+                    <Tab label="One-Time Fee" classes={{label: this.props.classes.tabLabel}} />
+                    <Tab label="Hourly Rate" classes={{label: this.props.classes.tabLabel}} />
+                    <Tab label="Retainer" classes={{label: this.props.classes.tabLabel}} />
                 </Tabs>
-                {this.state.value === 0 && <DialogTabContent1 />}
-                {this.state.value === 1 && <DialogTabContent2 />}
+                {this.state.value === 0 && <DialogTabContent1A />}
+                {this.state.value === 1 && <DialogTabContent2A />}
+                {this.state.value === 2 && <DialogTabContent3A />}
             </Dialog>    
         );
     }
 
 }
 
-DescriptionDialog.propTypes = {
+PaymentTermsDialog.propTypes = {
     open: PropTypes.bool.isRequired,
     onClose: PropTypes.func.isRequired
 }
 
-export default withStyles(style)(DescriptionDialog);
+export default withStyles(style)(PaymentTermsDialog);
