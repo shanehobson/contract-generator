@@ -9,6 +9,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 import { withStyles } from '@material-ui/core/styles';
 import { changePage } from '../../actions/pages';
 import { setDescription } from '../../actions/contractInfo';
+import DescriptionDialog from '../DescriptionDialog';
 
 const styles = theme => ({
     root: {
@@ -32,7 +33,8 @@ class Page5 extends Component {
         this.state = {
             open: false,
             error: '',
-            description: this.props.description ? this.props.description : ''
+            description: this.props.description ? this.props.description : '',
+            descriptionDialogOpen: false
         };
     };
 
@@ -50,6 +52,16 @@ class Page5 extends Component {
 
     handleDescriptionChange = e => {
         this.setState({ description: e.target.value });
+    };
+
+    handleLinkClicked = () => {
+        this.setState({ descriptionDialogOpen: true });
+    };
+
+    handleClose = () => {
+        this.setState({
+            descriptionDialogOpen: false
+        });
     };
 
     handlePreviousPageButtonClick = () => {
@@ -86,7 +98,15 @@ class Page5 extends Component {
                     </div>
                     <div className='FormHeaderContainer'>
                         <Typography variant='subheading'>
-                            Please provide a description of the services you will provide. This description will be the official Project Description for the contract.
+                            Please provide a description of the services you will provide.
+                            This description will be the official Project Description for the contract.
+                            <br />
+                            <br />
+                            <span
+                                style={{color: 'purple', cursor: 'pointer'}}
+                                onClick={this.handleLinkClicked}
+                            >
+                            Click here </span> to see some example Project Descriptions if you are unsure what to include.
                         </Typography>
                     </div>
                     <div>
@@ -136,6 +156,7 @@ class Page5 extends Component {
                         </Button>  
                     </div>
                 </div>
+                <DescriptionDialog open={this.state.descriptionDialogOpen} onClose={this.handleClose} />
             </Paper>
         );
     }

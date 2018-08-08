@@ -83,9 +83,10 @@ class Page6 extends Component {
                     <div className='FormHeaderContainer'>
                         <Typography variant='subheading'>
                             Please provide the Project Specifications for your web development project.
-                            The Project Specifications will be the criteria used to determine when the project has been successfully completed.
-                            Click <a href='https://www.popwebdesign.net/popart_blog/en/2015/02/10-key-items-on-how-to-write-a-website-specification/' target='blank'>
-                            here</a> for some guidance on writing project specifications.
+                            The Project Specifications will be the criteria used to determine when the project has been successfully completed. 
+                            <br /><br />
+                            <a href='https://www.popwebdesign.net/popart_blog/en/2015/02/10-key-items-on-how-to-write-a-website-specification/' target='blank'> 
+                            Click here</a> for some guidance on writing project specifications.
                         </Typography>
                     </div>
                     <div>
