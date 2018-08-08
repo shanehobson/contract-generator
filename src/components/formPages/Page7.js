@@ -9,6 +9,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 import { withStyles } from '@material-ui/core/styles';
 import { changePage } from '../../actions/pages';
 import { setPaymentTerms } from '../../actions/contractInfo';
+import PaymentTermsDialog from '../PaymentTermsDialog';
 
 const styles = theme => ({
     root: {
@@ -32,7 +33,8 @@ class Page7 extends Component {
         this.state = {
             open: false,
             error: '',
-            paymentTerms: this.props.paymentTerms ? this.props.paymentTerms : ''
+            paymentTerms: this.props.paymentTerms ? this.props.paymentTerms : '',
+            paymentTermsDialogOpen: false
         };
     };
 
@@ -50,6 +52,16 @@ class Page7 extends Component {
 
     handlePaymentTermsChange = e => {
         this.setState({ paymentTerms: e.target.value });
+    };
+
+    handleLinkClicked = () => {
+        this.setState({ paymentTermsDialogOpen: true });
+    };
+
+    handleDialogClose = () => {
+        this.setState({
+            paymentTermsDialogOpen: false
+        });
     };
 
     handlePreviousPageButtonClick = () => {
@@ -89,9 +101,10 @@ class Page7 extends Component {
                     <div className='FormHeaderContainer'>
                         <Typography variant='subheading'>
                             Please provide the Payment Terms for the contract.
-                            For example, will there be one lump-sum payment once the project is completed?
-                            Or, will you be paid in installments as various sub-tasks are completed?
-                            Will you be paid an hourly rate or a fixed fee?
+                            <span
+                            style={{ color: 'purple', cursor: 'pointer', fontWeight: 'bold' }}
+                                onClick={this.handleLinkClicked}
+                            > Click here </span> to see some example Payment Terms if you are unsure what to include.
                         </Typography>
                     </div>
                     <div>
@@ -141,6 +154,7 @@ class Page7 extends Component {
                         </Button>  
                     </div>
                 </div>
+                <PaymentTermsDialog open={this.state.paymentTermsDialogOpen} onClose={this.handleDialogClose} />
             </Paper>
         );
     }
