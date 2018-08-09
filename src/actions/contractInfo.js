@@ -44,3 +44,8 @@ export const setSigInfoCustomer = ({ sigName, sigTitle }) => ({
         sigName,
         sigTitle
 });
+
+export const setFormsAreComplete = (formsAreComplete) => ({
+    type: 'SET_FORMS_ARE_COMPLETE',
+        formsAreComplete
+});
