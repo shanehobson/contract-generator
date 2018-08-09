@@ -23,19 +23,39 @@ class Page9 extends Component {
         super(props);
     };
 
-    handleNextPageButtonClick = () => {
-        this.props.changePage('2');
+    handlePreviousPageButtonClick = () => {
+        if (this.props.customerTypew === 'business') {
+            this.props.changePage('8B');
+        } else {
+            this.props.changePage('8A');
+        }
     };
 
     render() {
-        const { classes } = this.props;
+        const { classes, formsAreComplete } = this.props;
         return (
             <Paper classes={{root: this.props.classes.root}} elevation={1}>
                 <div className='Page1TopDiv'>
                     <Typography variant='title'>
-                         Placeholder page
+                        {
+                            formsAreComplete ?
+                                'Congratulations, your contract is ready for your review! Please take a moment to review the document in the right pane to make sure all the information is correct. If you need to edit any of the information you entered, click the button below to navigate to the information you wish to edit. Once you are sure that the information in the contraft is correct, click the "Generate PDF" button at the top of the right pane to download a PDF of your contract.'
+                            :
+                                'Some information is missing. Please go back and complete all form fields so we can generate your Web Development Services Agreement.'
+                        }
                     </Typography>
-                </div>           
+                </div>
+                <div className='PageBottomDiv'>
+                <Button
+                    variant="contained"
+                    color="primary"
+                    size='large'
+                    className={classes.button}
+                    onClick={this.handlePreviousPageButtonClick}
+                    >
+                    <p className='ButtonText'>Go Back</p>
+              </Button>   
+                </div>             
             </Paper>
         );
     }
@@ -43,12 +63,19 @@ class Page9 extends Component {
 
 Page9.propTypes = {
     classes: PropTypes.object.isRequired,
-    changePage: PropTypes.func.isRequired
+    changePage: PropTypes.func.isRequired,
+    formsAreComplete: PropTypes.bool.isRequired,
+    customerType: PropTypes.string.isRequired
 };
+
+const mapStateToProps = (state) => ({
+    formsAreComplete: state.contractInfo.formsAreComplete,
+    customerType: state.contractInfo.customerType
+});
 
 const mapDispatchToProps = (dispatch) => ({
     changePage: (pageNumber) => dispatch(changePage(pageNumber))
 });
 
-export default connect(undefined, mapDispatchToProps)(withStyles(style)(Page9));
+export default connect(mapStateToProps, mapDispatchToProps)(withStyles(style)(Page9));
 

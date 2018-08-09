@@ -25,7 +25,8 @@ const contractInfoDefaultState = {
     sigInfoCustomer: {
         sigName: '',
         sigTitle: ''
-    }
+    },
+    formsAreComplete: false
 };
 
 const contractInfoReducer = (state = contractInfoDefaultState, action) => {
@@ -92,6 +93,11 @@ const contractInfoReducer = (state = contractInfoDefaultState, action) => {
                     sigName: action.sigName,
                     sigTitle: action.sigTitle
                 }            
+            };
+        case 'SET_FORMS_ARE_COMPLETE':
+            return {
+                ...state,
+                formsAreComplete: action.formsAreComplete           
             };
         default:
             return state;

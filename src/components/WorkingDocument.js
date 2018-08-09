@@ -7,6 +7,7 @@ import Button from '@material-ui/core/Button';
 import { withStyles } from '@material-ui/core/styles';
 import { generate } from '../documents/contract';
 import Contract from './Contract';
+import { setFormsAreComplete } from '../actions/contractInfo';
 
 
 const styles = theme => ({
@@ -73,12 +74,14 @@ class WorkingDocument extends Component {
                 paymentTerms !== ''
             );
         } else {
-            result =(
-                description !== '' &&
-                specs !== '' &&
-                paymentTerms !== ''
+            result = !(
+                description === '' &&
+                specs === '' &&
+                paymentTerms === ''
             );
         }
+        console.log(result);
+        this.props.setFormsAreComplete(result);
         return result;
     }
 
@@ -86,6 +89,7 @@ class WorkingDocument extends Component {
         const { formsAreComplete, textColor } = this.state;
         const { classes } = this.props;
 
+        console.log(this.props);
         return (
             <Paper classes={{root: this.props.classes.root}} elevation={1}>
                 {   formsAreComplete ? 
@@ -140,4 +144,8 @@ const mapStateToProps = (state) => ({
     sigInfoCustomer: state.contractInfo.sigInfoCustomer
 });
 
-export default connect(mapStateToProps)(withStyles(styles)(WorkingDocument));
+const mapDispatchToProps = (dispatch) => ({
+    setFormsAreComplete: (formsAreComplete) => dispatch(setFormsAreComplete(formsAreComplete))
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(withStyles(styles)(WorkingDocument));
