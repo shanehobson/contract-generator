@@ -22,15 +22,16 @@ class ProgressBar extends React.Component {
           };
     };
  
-    componentWillReceiveProps() {
+    componentWillReceiveProps(nextProps) {
+        console.log(nextProps);
         this.setState({
-            completed: this.calculatePercentageCompleted(),
-            total: this.calculateTotal()
+            completed: this.calculateNumberCompleted(nextProps),
+            total: this.calculateTotal(nextProps)
         });
     };
 
-    calculatePercentageCompleted = () => {
-        const {devType, customerType, devInfo, customerInfo, description, specs, paymentTerms, sigInfoDev, sigInfoCustomer } = this.props;
+    calculateNumberCompleted = (nextProps) => {
+        const { devType, customerType, devInfo, customerInfo, description, specs, paymentTerms, sigInfoDev, sigInfoCustomer } = nextProps;
         let totalCompleted = 0;
 
         if (devType !== '') totalCompleted++;
@@ -40,15 +41,20 @@ class ProgressBar extends React.Component {
         if (description !== '') totalCompleted++;
         if (specs !== '') totalCompleted++;
         if (paymentTerms !== '') totalCompleted++;
-        if (sigInfoDev !== '' && sigInfoCustomer !== '') totalCompleted++;
+        if (devType === 'business' && sigInfoDev.sigName !== '') totalCompleted++;
+        if (customerType === 'business' && sigInfoCustomer.sigName !== '') totalCompleted++;
 
         console.log(totalCompleted);
         return totalCompleted;
     };
 
-    calculateTotal() {
-        const { devType, customerType } = this.props;
-        const total = (devType === 'business' || customerType === 'business') ? 8 : 7;
+    calculateTotal(nextProps) {
+        const { devType, customerType } = nextProps;
+        let total = 7;
+
+        if (devType === 'business') total++;
+        if (customerType === 'business') total++;
+
         console.log(total);
         return total;
     };

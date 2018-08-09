@@ -33,9 +33,13 @@ class Dashboard extends Component {
   render() {
     return (
       <div className='Dashboard-container'>
-          <div className='Dashboard-progressBarContainer'>
-              <ProgressBar />
-          </div>
+          {
+            this.props.pageNumber !== '1' && (
+              <div className='Dashboard-progressBarContainer'>
+                <ProgressBar />
+              </div>
+            )
+          }
         <Grid container justify='center'>
           <Grid item sm={4}>
             {this.props.pageNumber === '1' && <Page1 />}
