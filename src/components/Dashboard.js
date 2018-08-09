@@ -22,6 +22,7 @@ import Page8A from './formPages/Page8A';
 import Page8B from './formPages/Page8B';
 import Page9 from './formPages/Page9';
 import WorkingDocument from './WorkingDocument';
+import ProgressBar from './Progressbar';
 
 
 class Dashboard extends Component {
@@ -32,6 +33,13 @@ class Dashboard extends Component {
   render() {
     return (
       <div className='Dashboard-container'>
+          {
+            this.props.pageNumber !== '1' && (
+              <div className='Dashboard-progressBarContainer'>
+                <ProgressBar />
+              </div>
+            )
+          }
         <Grid container justify='center'>
           <Grid item sm={4}>
             {this.props.pageNumber === '1' && <Page1 />}

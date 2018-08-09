@@ -80,7 +80,7 @@ class WorkingDocument extends Component {
                 paymentTerms === ''
             );
         }
-        console.log(result);
+        
         this.props.setFormsAreComplete(result);
         return result;
     }
@@ -89,7 +89,6 @@ class WorkingDocument extends Component {
         const { formsAreComplete, textColor } = this.state;
         const { classes } = this.props;
 
-        console.log(this.props);
         return (
             <Paper classes={{root: this.props.classes.root}} elevation={1}>
                 {   formsAreComplete ? 
