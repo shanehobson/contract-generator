@@ -65,6 +65,7 @@ class Page4 extends Component {
         } else {
             this.props.changePage('3B');
         }
+        window.scrollTo(0, 0);
     };
 
     handleNextPageButtonClick = () => {
@@ -74,6 +75,7 @@ class Page4 extends Component {
             this.props.changePage('4B');
         }
         this.props.setCustomerType(this.state.customerType);
+        window.scrollTo(0, 0);
     };
 
     render() {

@@ -54,6 +54,7 @@ class Page6 extends Component {
 
     handlePreviousPageButtonClick = () => {
             this.props.changePage('5');
+            window.scrollTo(0, 0);
     };
 
     handleNextPageButtonClick = () => {
@@ -66,6 +67,7 @@ class Page6 extends Component {
                 error: 'Please complete complete the form before proceeding.'
             })
         }
+        window.scrollTo(0, 0);
     };
 
     render() {

@@ -82,6 +82,7 @@ class Page3B extends Component {
 
     handlePreviousPageButtonClick = () => {
         this.props.changePage('2');
+        window.scrollTo(0, 0);
     };
 
     handleNextPageButtonClick = () => {
@@ -100,6 +101,7 @@ class Page3B extends Component {
                 error: 'Please complete all form fields before proceeding.'
             })
         }
+        window.scrollTo(0, 0);
     };
 
     render() {

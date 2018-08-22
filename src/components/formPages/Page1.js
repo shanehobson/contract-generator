@@ -25,6 +25,7 @@ class Page1 extends Component {
 
     handleNextPageButtonClick = () => {
         this.props.changePage('2');
+        window.scrollTo(0, 0);
     };
 
     render() {

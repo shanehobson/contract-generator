@@ -142,27 +142,34 @@ class Contract extends Component {
                 <p>
                 This Agreement shall be governed by, and construed in accordance with, the laws of the State of {devState}. 
                 </p> 
-                <h4>XVII.  SIGNATORIES</h4>
-                <p>
-                This Agreement shall be signed by {devRepresentative} {devType === 'business' && `on behalf of ${devName}`} (<strong>Developer</strong>), and {customerRepresentative} {customerType === 'business' && `on behalf of ${customerName}`} (<strong>Customer</strong>). This Agreement is effective as of the first date written above.
-                </p>
-                <br />
-                <p><strong>Developer:</strong></p>
-                <p>By: ______________________________________________</p>
-                <blockquote>{devRepresentative}</blockquote>
-                <blockquote>{devTitle}</blockquote>
-                <br />
-                <p><strong>Customer:</strong></p>
-                <p>By: ______________________________________________</p>
-                <blockquote>{customerRepresentative}</blockquote>
-                <blockquote>{customerTitle}</blockquote>
-                <br />
-                <h4>SCHEDULE A - Description of Services</h4>
-                <p>{description}</p>
-                <h4>SCHEDULE B - Project Specifications</h4>
-                <p>{specs}</p>
-                <h4>SCHEDULE C - Payment Terms</h4>
-                <p>{paymentTerms}</p>
+                <section>
+                    <h4>XVII.  SIGNATORIES</h4>
+                    <p>
+                    This Agreement shall be signed by {devRepresentative} {devType === 'business' && `on behalf of ${devName}`} (<strong>Developer</strong>), and {customerRepresentative} {customerType === 'business' && `on behalf of ${customerName}`} (<strong>Customer</strong>). This Agreement is effective as of the first date written above.
+                    </p>
+                    <br />
+                    <p><strong>Developer:</strong></p>
+                    <p>By: ______________________________________________</p>
+                    <blockquote>{devRepresentative}</blockquote>
+                    <blockquote>{devTitle}</blockquote>
+                    <br />
+                    <p><strong>Customer:</strong></p>
+                    <p>By: ______________________________________________</p>
+                    <blockquote>{customerRepresentative}</blockquote>
+                    <blockquote>{customerTitle}</blockquote>
+                </section>
+                <section>
+                    <h4>SCHEDULE A - Description of Services</h4>
+                    <p>{description}</p>
+                </section>
+                <section>
+                    <h4>SCHEDULE B - Project Specifications</h4>
+                    <p>{specs}</p>
+                </section>
+                <section>
+                    <h4>SCHEDULE C - Payment Terms</h4>
+                    <p>{paymentTerms}</p>
+                </section>
             </div>
         );
     }

@@ -2,7 +2,7 @@ import React from 'react';
 import jsPDF from 'jsPDF';
 
 const margins = {
-    top: 70,
+    top: 30,
     bottom: 40,
     left: 30,
     width: 550
@@ -21,7 +21,7 @@ const headerFooterFormatting = doc => {
 
     for(let i = totalPages; i >= 1; i--) { 
         doc.setPage(i);   //make this page, the current page we are currently working on.             
-        header(doc);
+        //header(doc);
         //footer(doc, i, totalPages);
     }
 };
