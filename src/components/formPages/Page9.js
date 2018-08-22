@@ -24,10 +24,12 @@ class Page9 extends Component {
     };
 
     handlePreviousPageButtonClick = () => {
-        if (this.props.customerTypew === 'business') {
+        if (this.props.customerType === 'business') {
             this.props.changePage('8B');
-        } else {
+        } else if (this.props.devType === 'business') {
             this.props.changePage('8A');
+        } else {
+            this.props.changePage('7');
         }
         window.scrollTo(0, 0);
     };
