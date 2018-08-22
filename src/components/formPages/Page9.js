@@ -29,6 +29,7 @@ class Page9 extends Component {
         } else {
             this.props.changePage('8A');
         }
+        window.scrollTo(0, 0);
     };
 
     render() {

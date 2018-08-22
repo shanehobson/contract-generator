@@ -70,6 +70,7 @@ class Page5 extends Component {
         } else {
             this.props.changePage('4B');
         }
+        window.scrollTo(0, 0);
     };
 
     handleNextPageButtonClick = () => {
@@ -82,6 +83,7 @@ class Page5 extends Component {
                 error: 'Please complete complete the form before proceeding.'
             })
         }
+        window.scrollTo(0, 0);
     };
 
     render() {

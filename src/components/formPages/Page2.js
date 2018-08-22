@@ -60,6 +60,7 @@ class Page2 extends Component {
     };
 
     handlePreviousPageButtonClick = () => {
+        window.scrollTo(0, 0);
         this.props.changePage('1');
     };
 
@@ -70,6 +71,7 @@ class Page2 extends Component {
             this.props.changePage('3B');
         }
         this.props.setDevType(this.state.devType);
+        window.scrollTo(0, 0);
     };
 
     render() {
