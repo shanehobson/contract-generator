@@ -1,8 +1,6 @@
-const pagesDefaultState = {
-    currentPage: '1'
-};
+import initialState from '../store/initialState';
 
-const pagesReducer = (state = pagesDefaultState, action) => {
+const pagesReducer = (state = {}, action) => {
     switch(action.type) {
         case 'CHANGE_PAGE':
             return {

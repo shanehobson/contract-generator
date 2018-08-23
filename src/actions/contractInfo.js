@@ -46,7 +46,7 @@ export const startSetCustomerInfo = (customerInfo) => {
     }
 };
 
-export const setDescription = ({ description }) => ({
+export const setDescription = (description) => ({
     type: 'SET_DESCRIPTION',
     description
 });
@@ -58,7 +58,7 @@ export const startSetDescription = (description) => {
     }
 };
 
-export const setSpecs = ({ specs }) => ({
+export const setSpecs = (specs) => ({
     type: 'SET_SPECS',
     specs
 });
@@ -70,7 +70,7 @@ export const startSetSpecs = (specs) => {
     }
 };
 
-export const setPaymentTerms = ({ paymentTerms }) => ({
+export const setPaymentTerms = (paymentTerms) => ({
     type: 'SET_PAYMENT_TERMS',
     paymentTerms
 });
@@ -112,3 +112,10 @@ export const setFormsAreComplete = (formsAreComplete) => ({
     type: 'SET_FORMS_ARE_COMPLETE',
         formsAreComplete
 });
+
+export const startSetFormsAreComplete = (formsAreComplete) => {
+    return (dispatch) => {
+        localStorage.setItem('formsAreComplete', formsAreComplete);
+        return dispatch(setFormsAreComplete(formsAreComplete));
+    }
+};

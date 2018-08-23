@@ -76,7 +76,7 @@ class Page5 extends Component {
     handleNextPageButtonClick = () => {
         if (this.state.description) {   
             const { description } = this.state;
-            this.props.startSetDescription({ description });
+            this.props.startSetDescription(description);
             this.props.startChangePage('6');
         } else {
             this.setState({

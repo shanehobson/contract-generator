@@ -60,7 +60,7 @@ class Page6 extends Component {
     handleNextPageButtonClick = () => {
         if (this.state.specs) {   
             const { specs } = this.state;
-            this.props.startSetSpecs({ specs });
+            this.props.startSetSpecs(specs);
             this.props.startChangePage('7');
         } else {
             this.setState({

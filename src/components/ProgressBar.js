@@ -35,8 +35,8 @@ class ProgressBar extends React.Component {
 
         if (devType !== '') totalCompleted++;
         if (customerType !== '') totalCompleted++;
-        if (devInfo.zip !== '') totalCompleted++;
-        if (customerInfo.zip !== '') totalCompleted++;
+        if (devInfo !== { }) totalCompleted++;
+        if (customerInfo !== { }) totalCompleted++;
         if (description !== '') totalCompleted++;
         if (specs !== '') totalCompleted++;
         if (paymentTerms !== '') totalCompleted++;
@@ -86,7 +86,8 @@ ProgressBar.propTypes = {
     specs: PropTypes.string.isRequired,
     paymentTerms: PropTypes.string.isRequired,
     sigInfoDev: PropTypes.object.isRequired,
-    sigInfoCustomer: PropTypes.object.isRequired
+    sigInfoCustomer: PropTypes.object.isRequired,
+    currentPage: PropTypes.string.isRequired
 };
 
 const mapStateToProps = (state) => ({
@@ -98,7 +99,8 @@ const mapStateToProps = (state) => ({
     specs: state.contractInfo.specs,
     paymentTerms: state.contractInfo.paymentTerms,
     sigInfoDev: state.contractInfo.sigInfoDev,
-    sigInfoCustomer: state.contractInfo.sigInfoCustomer
+    sigInfoCustomer: state.contractInfo.sigInfoCustomer,
+    currentPage: state.pages.currentPage
 });
 
 export default connect(mapStateToProps)(withStyles(styles)(ProgressBar));

@@ -1,6 +1,7 @@
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
 import { composeWithDevTools } from 'redux-devtools-extension';
+import initialState from './initialState';
 import pagesReducer from '../reducers/pages';
 import contractInfoReducer from '../reducers/contractInfo';
 import USstatesReducer from '../reducers/USstates';
@@ -14,6 +15,7 @@ export default () => {
       contractInfo: contractInfoReducer,
       USstates: USstatesReducer
     }),
+    initialState,
     composeEnhancers(applyMiddleware(thunk))
   );
 

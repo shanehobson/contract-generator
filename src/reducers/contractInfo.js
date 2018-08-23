@@ -1,35 +1,6 @@
-const contractInfoDefaultState = {
-    devType: '',
-    customerType: '',
-    devInfo: {
-        name: '',
-        street: '',
-        city: '',
-        USstate: '',
-        zip: ''
-    },
-    customerInfo: {
-        name: '',
-        street: '',
-        city: '',
-        USstate: '',
-        zip: '',
-    },
-    description: '',
-    specs: '',
-    paymentTerms: '',
-    sigInfoDev: {
-        sigName: '',
-        sigTitle: ''
-    },
-    sigInfoCustomer: {
-        sigName: '',
-        sigTitle: ''
-    },
-    formsAreComplete: false
-};
+import initialState from '../store/initialState';
 
-const contractInfoReducer = (state = contractInfoDefaultState, action) => {
+const contractInfoReducer = (state = {}, action) => {
     switch(action.type) {
         case 'SET_DEV_TYPE':
             return {

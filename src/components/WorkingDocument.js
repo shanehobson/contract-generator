@@ -7,7 +7,7 @@ import Button from '@material-ui/core/Button';
 import { withStyles } from '@material-ui/core/styles';
 import { generate } from '../documents/contract';
 import Contract from './Contract';
-import { setFormsAreComplete } from '../actions/contractInfo';
+import { startSetFormsAreComplete } from '../actions/contractInfo';
 
 
 const styles = theme => ({
@@ -81,7 +81,7 @@ class WorkingDocument extends Component {
             );
         }
         
-        this.props.setFormsAreComplete(result);
+        this.props.startSetFormsAreComplete(result);
         return result;
     }
 
@@ -128,7 +128,8 @@ WorkingDocument.propTypes = {
     specs: PropTypes.string.isRequired,
     paymentTerms: PropTypes.string.isRequired,
     sigInfoDev: PropTypes.object.isRequired,
-    sigInfoCustomer: PropTypes.object.isRequired
+    sigInfoCustomer: PropTypes.object.isRequired,
+    startSetFormsAreComplete: PropTypes.func.isRequired
 };
 
 const mapStateToProps = (state) => ({
@@ -144,7 +145,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-    setFormsAreComplete: (formsAreComplete) => dispatch(setFormsAreComplete(formsAreComplete))
+    startSetFormsAreComplete: (formsAreComplete) => dispatch(startSetFormsAreComplete(formsAreComplete))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(withStyles(styles)(WorkingDocument));

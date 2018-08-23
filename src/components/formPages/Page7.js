@@ -72,7 +72,7 @@ class Page7 extends Component {
     handleNextPageButtonClick = () => {
         if (this.state.paymentTerms) {   
             const { paymentTerms } = this.state;
-            this.props.startSetPaymentTerms({ paymentTerms });
+            this.props.startSetPaymentTerms(paymentTerms);
             if (this.props.devType === 'business') {
                 this.props.startChangePage('8A');
             } else if (this.props.customerType === 'business') {
