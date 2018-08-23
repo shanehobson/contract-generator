@@ -7,8 +7,8 @@ import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import MenuItem from '@material-ui/core/MenuItem';
 import { withStyles } from '@material-ui/core/styles';
-import { changePage } from '../../actions/pages';
-import { setDescription } from '../../actions/contractInfo';
+import { startChangePage } from '../../actions/pages';
+import { startSetDescription } from '../../actions/contractInfo';
 import DescriptionDialog from '../DescriptionDialog';
 
 const styles = theme => ({
@@ -66,9 +66,9 @@ class Page5 extends Component {
 
     handlePreviousPageButtonClick = () => {
         if (this.props.customerType === 'individual') {
-            this.props.changePage('4A');
+            this.props.startChangePage('4A');
         } else {
-            this.props.changePage('4B');
+            this.props.startChangePage('4B');
         }
         window.scrollTo(0, 0);
     };
@@ -76,8 +76,8 @@ class Page5 extends Component {
     handleNextPageButtonClick = () => {
         if (this.state.description) {   
             const { description } = this.state;
-            this.props.setDescription({ description });
-            this.props.changePage('6');
+            this.props.startSetDescription({ description });
+            this.props.startChangePage('6');
         } else {
             this.setState({
                 error: 'Please complete complete the form before proceeding.'
@@ -166,13 +166,14 @@ class Page5 extends Component {
 
 Page5.propTypes = {
     classes: PropTypes.object.isRequired,
-    changePage: PropTypes.func.isRequired,
+    startChangePage: PropTypes.func.isRequired,
+    startSetDescription: PropTypes.func.isRequired,
     description: PropTypes.string.isRequired
 };
 
 const mapDispatchToProps = (dispatch) => ({
-    changePage: (pageNumber) => dispatch(changePage(pageNumber)),
-    setDescription: (description) => dispatch(setDescription(description))
+    startChangePage: (pageNumber) => dispatch(startChangePage(pageNumber)),
+    startSetDescription: (description) => dispatch(startSetDescription(description))
 });
 
 const mapStateToProps = (state) => ({

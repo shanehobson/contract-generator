@@ -12,8 +12,8 @@ import Button from '@material-ui/core/Button';
 import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
 import { withStyles } from '@material-ui/core/styles';
-import { changePage } from '../../actions/pages';
-import { setDevInfo } from '../../actions/contractInfo';
+import { startChangePage } from '../../actions/pages';
+import { startSetDevInfo } from '../../actions/contractInfo';
 
 const styles = theme => ({
     root: {
@@ -81,7 +81,7 @@ class Page3B extends Component {
     };
 
     handlePreviousPageButtonClick = () => {
-        this.props.changePage('2');
+        this.props.startChangePage('2');
         window.scrollTo(0, 0);
     };
 
@@ -92,16 +92,18 @@ class Page3B extends Component {
             this.state.devUSstate &&
             this.state.zip) {   
             const { name, street, city, devUSstate, zip } = this.state;
-            this.props.setDevInfo({
+            this.props.startSetDevInfo({
                 name, street, city, devUSstate, zip
             });
-            this.props.changePage('4');
+            this.props.startChangePage('4');
         } else {
             this.setState({
                 error: 'Please complete all form fields before proceeding.'
             })
         }
         window.scrollTo(0, 0);
+        const storedDevInfo = JSON.parse(localStorage.getItem('devInfo'));
+        console.log(storedDevInfo);
     };
 
     render() {
@@ -217,15 +219,15 @@ class Page3B extends Component {
 
 Page3B.propTypes = {
     classes: PropTypes.object.isRequired,
-    changePage: PropTypes.func.isRequired,
-    setDevInfo: PropTypes.func.isRequired,
+    startChangePage: PropTypes.func.isRequired,
+    startSetDevInfo: PropTypes.func.isRequired,
     USstates: PropTypes.object.isRequired,
     devInfo: PropTypes.object.isRequired
 };
 
 const mapDispatchToProps = (dispatch) => ({
-    changePage: (pageNumber) => dispatch(changePage(pageNumber)),
-    setDevInfo: (devInfo) => dispatch(setDevInfo(devInfo))
+    startChangePage: (pageNumber) => dispatch(startChangePage(pageNumber)),
+    startSetDevInfo: (devInfo) => dispatch(startSetDevInfo(devInfo))
 });
 
 const mapStateToProps = (state) => ({

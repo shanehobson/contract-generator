@@ -13,8 +13,8 @@ import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
 import Button from '@material-ui/core/Button';
 import { withStyles } from '@material-ui/core/styles';
-import { changePage } from '../../actions/pages';
-import { setCustomerType } from '../../actions/contractInfo';
+import { startChangePage } from '../../actions/pages';
+import { startSetCustomerType } from '../../actions/contractInfo';
 
 const styles = theme => ({
     root: {
@@ -61,20 +61,20 @@ class Page4 extends Component {
 
     handlePreviousPageButtonClick = () => {
         if (this.props.devType === 'individual') {
-            this.props.changePage('3A');
+            this.props.startChangePage('3A');
         } else {
-            this.props.changePage('3B');
+            this.props.startChangePage('3B');
         }
         window.scrollTo(0, 0);
     };
 
     handleNextPageButtonClick = () => {
         if (this.state.customerType === 'individual') {
-            this.props.changePage('4A');
+            this.props.startChangePage('4A');
         } else {
-            this.props.changePage('4B');
+            this.props.startChangePage('4B');
         }
-        this.props.setCustomerType(this.state.customerType);
+        this.props.startSetCustomerType(this.state.customerType);
         window.scrollTo(0, 0);
     };
 
@@ -133,13 +133,14 @@ class Page4 extends Component {
 
 Page4.propTypes = {
     classes: PropTypes.object.isRequired,
-    changePage: PropTypes.func.isRequired,
+    startChangePage: PropTypes.func.isRequired,
+    startSetCustomerType: PropTypes.func.isRequired,
     devType: PropTypes.string.isRequired
 };
 
 const mapDispatchToProps = (dispatch) => ({
-    changePage: (pageNumber) => dispatch(changePage(pageNumber)),
-    setCustomerType: (customerType) => dispatch(setCustomerType(customerType))
+    startChangePage: (pageNumber) => dispatch(startChangePage(pageNumber)),
+    startSetCustomerType: (customerType) => dispatch(startSetCustomerType(customerType))
 });
 
 const mapStateToProps = (state) => ({

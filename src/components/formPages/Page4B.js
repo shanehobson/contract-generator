@@ -12,8 +12,8 @@ import Button from '@material-ui/core/Button';
 import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
 import { withStyles } from '@material-ui/core/styles';
-import { changePage } from '../../actions/pages';
-import { setCustomerInfo } from '../../actions/contractInfo';
+import { startChangePage } from '../../actions/pages';
+import { startSetCustomerInfo } from '../../actions/contractInfo';
 
 const styles = theme => ({
     root: {
@@ -82,7 +82,7 @@ class Page4B extends Component {
     };
 
     handlePreviousPageButtonClick = () => {
-        this.props.changePage('4');
+        this.props.startChangePage('4');
         window.scrollTo(0, 0);
     };
 
@@ -93,10 +93,10 @@ class Page4B extends Component {
             this.state.customerUSstate &&
             this.state.zip) {   
             const { name, street, city, customerUSstate, zip } = this.state;
-            this.props.setCustomerInfo({
+            this.props.startSetCustomerInfo({
                 name, street, city, customerUSstate, zip
             });
-            this.props.changePage('5');
+            this.props.startChangePage('5');
         } else {
             this.setState({
                 error: 'Please complete all form fields before proceeding.'
@@ -218,15 +218,15 @@ class Page4B extends Component {
 
 Page4B.propTypes = {
     classes: PropTypes.object.isRequired,
-    changePage: PropTypes.func.isRequired,
-    setCustomerInfo: PropTypes.func.isRequired,
+    startChangePage: PropTypes.func.isRequired,
+    startSetCustomerInfo: PropTypes.func.isRequired,
     USstates: PropTypes.object.isRequired,
     customerInfo: PropTypes.object.isRequired
 };
 
 const mapDispatchToProps = (dispatch) => ({
-    changePage: (pageNumber) => dispatch(changePage(pageNumber)),
-    setCustomerInfo: (customerInfo) => dispatch(setCustomerInfo(customerInfo))
+    startChangePage: (pageNumber) => dispatch(startChangePage(pageNumber)),
+    startSetCustomerInfo: (customerInfo) => dispatch(startSetCustomerInfo(customerInfo))
 });
 
 const mapStateToProps = (state) => ({

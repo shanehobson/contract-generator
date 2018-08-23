@@ -7,8 +7,8 @@ import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import MenuItem from '@material-ui/core/MenuItem';
 import { withStyles } from '@material-ui/core/styles';
-import { changePage } from '../../actions/pages';
-import { setSpecs } from '../../actions/contractInfo';
+import { startChangePage } from '../../actions/pages';
+import { startSetSpecs } from '../../actions/contractInfo';
 
 const styles = theme => ({
     root: {
@@ -53,15 +53,15 @@ class Page6 extends Component {
     };
 
     handlePreviousPageButtonClick = () => {
-            this.props.changePage('5');
+            this.props.startChangePage('5');
             window.scrollTo(0, 0);
     };
 
     handleNextPageButtonClick = () => {
         if (this.state.specs) {   
             const { specs } = this.state;
-            this.props.setSpecs({ specs });
-            this.props.changePage('7');
+            this.props.startSetSpecs({ specs });
+            this.props.startChangePage('7');
         } else {
             this.setState({
                 error: 'Please complete complete the form before proceeding.'
@@ -149,13 +149,14 @@ class Page6 extends Component {
 
 Page6.propTypes = {
     classes: PropTypes.object.isRequired,
-    changePage: PropTypes.func.isRequired,
+    startChangePage: PropTypes.func.isRequired,
+    startSetSpecs: PropTypes.func.isRequired,
     specs: PropTypes.string.isRequired
 };
 
 const mapDispatchToProps = (dispatch) => ({
-    changePage: (pageNumber) => dispatch(changePage(pageNumber)),
-    setSpecs: (specs) => dispatch(setSpecs(specs))
+    startChangePage: (pageNumber) => dispatch(startChangePage(pageNumber)),
+    startSetSpecs: (specs) => dispatch(startSetSpecs(specs))
 });
 
 const mapStateToProps = (state) => ({

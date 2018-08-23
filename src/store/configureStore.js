@@ -1,6 +1,6 @@
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
-// import { composeWithDevTools } from 'redux-devtools-extension';
+import { composeWithDevTools } from 'redux-devtools-extension';
 import pagesReducer from '../reducers/pages';
 import contractInfoReducer from '../reducers/contractInfo';
 import USstatesReducer from '../reducers/USstates';

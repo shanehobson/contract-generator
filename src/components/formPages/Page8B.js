@@ -12,8 +12,8 @@ import Button from '@material-ui/core/Button';
 import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
 import { withStyles } from '@material-ui/core/styles';
-import { changePage } from '../../actions/pages';
-import { setSigInfoCustomer } from '../../actions/contractInfo';
+import { startChangePage } from '../../actions/pages';
+import { startSetSigInfoCustomer } from '../../actions/contractInfo';
 
 const styles = theme => ({
     root: {
@@ -67,9 +67,9 @@ class Page8B extends Component {
 
     handlePreviousPageButtonClick = () => {
         if (this.props.devType === 'business') {
-            this.props.changePage('8A');
+            this.props.startChangePage('8A');
         } else {
-            this.props.changePage('7');
+            this.props.startChangePage('7');
         }
         window.scrollTo(0, 0);
     };
@@ -78,8 +78,8 @@ class Page8B extends Component {
         if (this.state.sigName &&
             this.state.sigTitle) {   
                 const { sigName, sigTitle } = this.state;
-                this.props.setSigInfo({ sigName, sigTitle });
-                this.props.changePage('9');
+                this.props.startSetSigInfo({ sigName, sigTitle });
+                this.props.startChangePage('9');
         } else {
             this.setState({
                 error: 'Please complete all form fields before proceeding.'
@@ -159,8 +159,8 @@ class Page8B extends Component {
 };
 
 Page8B.propTypes = {
-    changePage: PropTypes.func.isRequired,
-    setSigInfo: PropTypes.func.isRequired,
+    startChangePage: PropTypes.func.isRequired,
+    startSetSigInfo: PropTypes.func.isRequired,
     classes: PropTypes.object.isRequired,
     devType: PropTypes.string.isRequired,
     customerType: PropTypes.string.isRequired,
@@ -169,8 +169,8 @@ Page8B.propTypes = {
 };
 
 const mapDispatchToProps = (dispatch) => ({
-    changePage: (pageNumber) => dispatch(changePage(pageNumber)),
-    setSigInfo: (sigInfo) => dispatch(setSigInfoCustomer(sigInfo))
+    startChangePage: (pageNumber) => dispatch(startChangePage(pageNumber)),
+    startSetSigInfo: (sigInfo) => dispatch(startSetSigInfoCustomer(sigInfo))
 });
 
 const mapStateToProps = (state) => ({

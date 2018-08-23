@@ -6,7 +6,7 @@ import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
 import { withStyles } from '@material-ui/core/styles';
-import { changePage } from '../../actions/pages';
+import { startChangePage } from '../../actions/pages';
 
 const style = theme => ({
     root: {
@@ -25,11 +25,11 @@ class Page9 extends Component {
 
     handlePreviousPageButtonClick = () => {
         if (this.props.customerType === 'business') {
-            this.props.changePage('8B');
+            this.props.startChangePage('8B');
         } else if (this.props.devType === 'business') {
-            this.props.changePage('8A');
+            this.props.startChangePage('8A');
         } else {
-            this.props.changePage('7');
+            this.props.startChangePage('7');
         }
         window.scrollTo(0, 0);
     };
@@ -66,7 +66,7 @@ class Page9 extends Component {
 
 Page9.propTypes = {
     classes: PropTypes.object.isRequired,
-    changePage: PropTypes.func.isRequired,
+    startChangePage: PropTypes.func.isRequired,
     formsAreComplete: PropTypes.bool.isRequired,
     customerType: PropTypes.string.isRequired
 };
@@ -77,7 +77,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-    changePage: (pageNumber) => dispatch(changePage(pageNumber))
+    startChangePage: (pageNumber) => dispatch(startChangePage(pageNumber))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(withStyles(style)(Page9));

@@ -23,7 +23,6 @@ class ProgressBar extends React.Component {
     };
  
     componentWillReceiveProps(nextProps) {
-        console.log(nextProps);
         this.setState({
             completed: this.calculateNumberCompleted(nextProps),
             total: this.calculateTotal(nextProps)
