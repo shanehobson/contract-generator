@@ -34,6 +34,13 @@ class WorkingDocument extends Component {
         }
     };
 
+    componentDidMount() {
+        this.setState({
+            formsAreComplete: this.formsAreComplete(),
+            textColor: this.formsAreComplete() ? '#000' : '#aaa'
+        });
+    }
+
     componentWillReceiveProps() {
         this.setState({
             formsAreComplete: this.formsAreComplete(),
@@ -82,6 +89,7 @@ class WorkingDocument extends Component {
         }
         
         this.props.startSetFormsAreComplete(result);
+        console.log(result);
         return result;
     }
 

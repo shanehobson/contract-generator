@@ -10,9 +10,9 @@ export const startSetDevType = (devType) => {
     }
 };
 
-export const setDevInfo = ({ name, street, city, devUSstate, zip }) => ({
+export const setDevInfo = ({ name, street, city, USstate, zip }) => ({
     type: 'SET_DEV_INFO',
-    devInfo: { name, street, city, devUSstate, zip }
+    devInfo: { name, street, city, USstate, zip }
 });
 
 export const startSetDevInfo = (devInfo) => {
@@ -34,9 +34,9 @@ export const startSetCustomerType = (customerType) => {
     }
 };
 
-export const setCustomerInfo = ({ name, street, city, customerUSstate, zip }) => ({
+export const setCustomerInfo = ({ name, street, city, USstate, zip }) => ({
     type: 'SET_CUSTOMER_INFO',
-    customerInfo: { name, street, city, customerUSstate, zip}
+    customerInfo: { name, street, city, USstate, zip}
 });
 
 export const startSetCustomerInfo = (customerInfo) => {

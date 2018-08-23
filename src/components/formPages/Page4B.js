@@ -43,7 +43,7 @@ class Page4B extends Component {
             name: this.props.customerInfo.name ? this.props.customerInfo.name : '',
             street: this.props.customerInfo.street ? this.props.customerInfo.street : '',
             city: this.props.customerInfo.city ? this.props.customerInfo.city : '',
-            customerUSstate: this.props.customerInfo.USstate ? this.props.customerInfo.USstate : '',
+            USstate: this.props.customerInfo.USstate ? this.props.customerInfo.USstate : '',
             zip: this.props.customerInfo.zip ? this.props.customerInfo.zip : '',
         };
     };
@@ -73,8 +73,8 @@ class Page4B extends Component {
     };
 
     handleUSstateChange = e => {
-        this.setState({ customerUSstate: e.target.value });
-        console.log(this.state.customerUSstate);
+        this.setState({ USstate: e.target.value });
+        console.log(this.state.USstate);
     };
 
     handleZipChange = e => {
@@ -90,11 +90,11 @@ class Page4B extends Component {
         if (this.state.name &&
             this.state.street &&
             this.state.city &&
-            this.state.customerUSstate &&
+            this.state.USstate &&
             this.state.zip) {   
-            const { name, street, city, customerUSstate, zip } = this.state;
+            const { name, street, city, USstate, zip } = this.state;
             this.props.startSetCustomerInfo({
-                name, street, city, customerUSstate, zip
+                name, street, city, USstate, zip
             });
             this.props.startChangePage('5');
         } else {
@@ -107,7 +107,7 @@ class Page4B extends Component {
 
     render() {
         const { classes, USstates } = this.props;
-        const { name, street, city, customerUSstate, zip, nextButtonDisabled } = this.state;
+        const { name, street, city, USstate, zip, nextButtonDisabled } = this.state;
 
         return (
             <Paper classes={{root: classes.root}} elevation={1}>
@@ -165,16 +165,16 @@ class Page4B extends Component {
                                     onChange={this.handleUSstateChange}
                                     onClose={this.handleClose}
                                     onOpen={this.handleOpen}
-                                    value={customerUSstate ? USstates.USstates.find(USstate => USstate.name === customerUSstate).name : ''}
+                                    value={USstate ? USstates.USstates.find(stateElement => stateElement.name === USstate).name : ''}
                                     onChange={this.handleChange}
                                     inputProps={{
-                                    name: 'customerUSstate',
+                                    name: 'USstate',
                                     id: 'controlled-open-select',
                                     }}
                                 >
                                 {
                                     USstates.USstates.map(USstate => (
-                                        <MenuItem key={USstate.abbreviation} value={USstate.name}>{USstate.name}</MenuItem>
+                                        <MenuItem key={USstate.name} value={USstate.name}>{USstate.name}</MenuItem>
                                     ))
                                 
                                 }

@@ -14,7 +14,7 @@ const contractInfoReducer = (state = {}, action) => {
                     name: action.devInfo.name,
                     street: action.devInfo.street,
                     city: action.devInfo.city,
-                    USstate: action.devInfo.devUSstate,
+                    USstate: action.devInfo.USstate,
                     zip: action.devInfo.zip
                 }
             };
@@ -30,7 +30,7 @@ const contractInfoReducer = (state = {}, action) => {
                     name: action.customerInfo.name,
                     street: action.customerInfo.street,
                     city: action.customerInfo.city,
-                    USstate: action.customerInfo.customerUSstate,
+                    USstate: action.customerInfo.USstate,
                     zip: action.customerInfo.zip,
             }
             };

@@ -71,7 +71,7 @@ if (localStorage.getItem('pageNumber') !== null) {
 }
 
 if (localStorage.getItem('formsAreComplete') !== null) {
-    formsAreComplete = localStorage.getItem('formsAreComplete');
+    formsAreComplete = true;
 }
 
 
@@ -104,7 +104,7 @@ const initialState = {
             sigName: sigInfoCustomer.sigName,
             sigTitle: sigInfoCustomer.sigTitle
         },
-        formsAreComplete
+        formsAreComplete: formsAreComplete
     },
     pages: {
         currentPage

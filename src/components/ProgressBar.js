@@ -21,6 +21,13 @@ class ProgressBar extends React.Component {
             total: 7
           };
     };
+
+    componentDidMount() {
+        this.setState({
+            completed: this.calculateNumberCompleted(this.props),
+            total: this.calculateTotal(this.props)
+        });
+    }
  
     componentWillReceiveProps(nextProps) {
         this.setState({
@@ -35,8 +42,8 @@ class ProgressBar extends React.Component {
 
         if (devType !== '') totalCompleted++;
         if (customerType !== '') totalCompleted++;
-        if (devInfo !== { }) totalCompleted++;
-        if (customerInfo !== { }) totalCompleted++;
+        if (devInfo.zip !== '') totalCompleted++;
+        if (customerInfo.zip !== '') totalCompleted++;
         if (description !== '') totalCompleted++;
         if (specs !== '') totalCompleted++;
         if (paymentTerms !== '') totalCompleted++;
@@ -61,7 +68,7 @@ class ProgressBar extends React.Component {
   render() {
     const { classes } = this.props;
     const { completed, total } = this.state;
-
+    console.log();
     return (
       <div className={classes.root}>
         <LinearProgress variant="determinate" value={Math.floor(completed / total * 100)} />
