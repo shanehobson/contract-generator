@@ -7,8 +7,8 @@ import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import MenuItem from '@material-ui/core/MenuItem';
 import { withStyles } from '@material-ui/core/styles';
-import { changePage } from '../../actions/pages';
-import { setPaymentTerms } from '../../actions/contractInfo';
+import { startChangePage } from '../../actions/pages';
+import { startSetPaymentTerms } from '../../actions/contractInfo';
 import PaymentTermsDialog from '../PaymentTermsDialog';
 
 const styles = theme => ({
@@ -65,20 +65,20 @@ class Page7 extends Component {
     };
 
     handlePreviousPageButtonClick = () => {
-            this.props.changePage('6');
+            this.props.startChangePage('6');
             window.scrollTo(0, 0);
     };
 
     handleNextPageButtonClick = () => {
         if (this.state.paymentTerms) {   
             const { paymentTerms } = this.state;
-            this.props.setPaymentTerms({ paymentTerms });
+            this.props.startSetPaymentTerms(paymentTerms);
             if (this.props.devType === 'business') {
-                this.props.changePage('8A');
+                this.props.startChangePage('8A');
             } else if (this.props.customerType === 'business') {
-                this.props.changePage('8B');
+                this.props.startChangePage('8B');
             } else {
-                this.props.changePage('9');
+                this.props.startChangePage('9');
             }
         } else {
             this.setState({
@@ -164,15 +164,16 @@ class Page7 extends Component {
 
 Page7.propTypes = {
     classes: PropTypes.object.isRequired,
-    changePage: PropTypes.func.isRequired,
+    startChangePage: PropTypes.func.isRequired,
+    startSetPaymentTerms: PropTypes.func.isRequired,
     paymentTerms: PropTypes.string.isRequired,
     devType: PropTypes.string.isRequired,
     customerType: PropTypes.string.isRequired
 };
 
 const mapDispatchToProps = (dispatch) => ({
-    changePage: (pageNumber) => dispatch(changePage(pageNumber)),
-    setPaymentTerms: (paymentTerms) => dispatch(setPaymentTerms(paymentTerms))
+    startChangePage: (pageNumber) => dispatch(startChangePage(pageNumber)),
+    startSetPaymentTerms: (paymentTerms) => dispatch(startSetPaymentTerms(paymentTerms))
 });
 
 const mapStateToProps = (state) => ({

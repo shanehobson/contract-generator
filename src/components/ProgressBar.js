@@ -21,9 +21,15 @@ class ProgressBar extends React.Component {
             total: 7
           };
     };
+
+    componentDidMount() {
+        this.setState({
+            completed: this.calculateNumberCompleted(this.props),
+            total: this.calculateTotal(this.props)
+        });
+    }
  
     componentWillReceiveProps(nextProps) {
-        console.log(nextProps);
         this.setState({
             completed: this.calculateNumberCompleted(nextProps),
             total: this.calculateTotal(nextProps)
@@ -62,7 +68,7 @@ class ProgressBar extends React.Component {
   render() {
     const { classes } = this.props;
     const { completed, total } = this.state;
-
+    console.log();
     return (
       <div className={classes.root}>
         <LinearProgress variant="determinate" value={Math.floor(completed / total * 100)} />
@@ -87,7 +93,8 @@ ProgressBar.propTypes = {
     specs: PropTypes.string.isRequired,
     paymentTerms: PropTypes.string.isRequired,
     sigInfoDev: PropTypes.object.isRequired,
-    sigInfoCustomer: PropTypes.object.isRequired
+    sigInfoCustomer: PropTypes.object.isRequired,
+    currentPage: PropTypes.string.isRequired
 };
 
 const mapStateToProps = (state) => ({
@@ -99,7 +106,8 @@ const mapStateToProps = (state) => ({
     specs: state.contractInfo.specs,
     paymentTerms: state.contractInfo.paymentTerms,
     sigInfoDev: state.contractInfo.sigInfoDev,
-    sigInfoCustomer: state.contractInfo.sigInfoCustomer
+    sigInfoCustomer: state.contractInfo.sigInfoCustomer,
+    currentPage: state.pages.currentPage
 });
 
 export default connect(mapStateToProps)(withStyles(styles)(ProgressBar));

@@ -12,8 +12,8 @@ import Button from '@material-ui/core/Button';
 import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
 import { withStyles } from '@material-ui/core/styles';
-import { changePage } from '../../actions/pages';
-import { setSigInfoDev } from '../../actions/contractInfo';
+import { startChangePage } from '../../actions/pages';
+import { startSetSigInfoDev } from '../../actions/contractInfo';
 
 const styles = theme => ({
     root: {
@@ -66,7 +66,7 @@ class Page8A extends Component {
     };
 
     handlePreviousPageButtonClick = () => {
-        this.props.changePage('7');
+        this.props.startChangePage('7');
         window.scrollTo(0, 0);
     };
 
@@ -74,11 +74,11 @@ class Page8A extends Component {
         if (this.state.sigName &&
             this.state.sigTitle) {   
                 const { sigName, sigTitle } = this.state;
-                this.props.setSigInfo({ sigName, sigTitle });
+                this.props.startSetSigInfo({ sigName, sigTitle });
             if (this.props.customerType === 'business') {
-                this.props.changePage('8B');
+                this.props.startChangePage('8B');
             } else {
-                this.props.changePage('9');
+                this.props.startChangePage('9');
             }
         } else {
             this.setState({
@@ -160,15 +160,15 @@ class Page8A extends Component {
 
 Page8A.propTypes = {
     classes: PropTypes.object.isRequired,
-    changePage: PropTypes.func.isRequired,
-    setSigInfo: PropTypes.func.isRequired,
+    startChangePage: PropTypes.func.isRequired,
+    startSetSigInfo: PropTypes.func.isRequired,
     customerType: PropTypes.string.isRequired,
     devBusinessName: PropTypes.string.isRequired
 };
 
 const mapDispatchToProps = (dispatch) => ({
-    changePage: (pageNumber) => dispatch(changePage(pageNumber)),
-    setSigInfo: (sigInfo) => dispatch(setSigInfoDev(sigInfo))
+    startChangePage: (pageNumber) => dispatch(startChangePage(pageNumber)),
+    startSetSigInfo: (sigInfo) => dispatch(startSetSigInfoDev(sigInfo))
 });
 
 const mapStateToProps = (state) => ({

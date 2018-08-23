@@ -13,8 +13,8 @@ import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
 import Button from '@material-ui/core/Button';
 import { withStyles } from '@material-ui/core/styles';
-import { changePage } from '../../actions/pages';
-import { setDevType } from '../../actions/contractInfo';
+import { startChangePage } from '../../actions/pages';
+import { startSetDevType } from '../../actions/contractInfo';
 
 const styles = theme => ({
     root: {
@@ -61,16 +61,16 @@ class Page2 extends Component {
 
     handlePreviousPageButtonClick = () => {
         window.scrollTo(0, 0);
-        this.props.changePage('1');
+        this.props.startChangePage('1');
     };
 
     handleNextPageButtonClick = () => {
         if (this.state.devType === 'individual') {
-            this.props.changePage('3A');
+            this.props.startChangePage('3A');
         } else {
-            this.props.changePage('3B');
+            this.props.startChangePage('3B');
         }
-        this.props.setDevType(this.state.devType);
+        this.props.startSetDevType(this.state.devType);
         window.scrollTo(0, 0);
     };
 
@@ -129,12 +129,13 @@ class Page2 extends Component {
 
 Page2.propTypes = {
     classes: PropTypes.object.isRequired,
-    changePage: PropTypes.func.isRequired
+    startChangePage: PropTypes.func.isRequired,
+    startSetDevType: PropTypes.func.isRequired
 };
 
 const mapDispatchToProps = (dispatch) => ({
-    changePage: (pageNumber) => dispatch(changePage(pageNumber)),
-    setDevType: (devType) => dispatch(setDevType(devType))
+    startChangePage: (pageNumber) => dispatch(startChangePage(pageNumber)),
+    startSetDevType: (devType) => dispatch(startSetDevType(devType))
 });
 
 const mapStateToProps = (state) => ({

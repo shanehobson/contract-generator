@@ -6,7 +6,7 @@ import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
 import { withStyles } from '@material-ui/core/styles';
-import { changePage } from '../../actions/pages';
+import { startChangePage } from '../../actions/pages';
 
 const style = theme => ({
     root: {
@@ -24,7 +24,7 @@ class Page1 extends Component {
     };
 
     handleNextPageButtonClick = () => {
-        this.props.changePage('2');
+        this.props.startChangePage('2');
         window.scrollTo(0, 0);
     };
 
@@ -55,11 +55,11 @@ class Page1 extends Component {
 
 Page1.propTypes = {
     classes: PropTypes.object.isRequired,
-    changePage: PropTypes.func.isRequired
+    startChangePage: PropTypes.func.isRequired
 };
 
 const mapDispatchToProps = (dispatch) => ({
-    changePage: (pageNumber) => dispatch(changePage(pageNumber))
+    startChangePage: (pageNumber) => dispatch(startChangePage(pageNumber))
 });
 
 export default connect(undefined, mapDispatchToProps)(withStyles(style)(Page1));
