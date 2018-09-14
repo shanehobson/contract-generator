@@ -1,6 +1,7 @@
 .Dashboard-container {
     min-height: 80vh;
     margin-bottom: 2rem;
+    padding: 2rem;
 }
 
 .Dashboard-progressBarContainer {

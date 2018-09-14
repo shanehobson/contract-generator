@@ -15,15 +15,10 @@ const NavBar = () => {
         <div className='NavBar-navBar'>
             <AppBar position='static'>
                 <Toolbar>
-                    <Hidden xsDown>
-                        <Typography variant='title' color='inherit' className='NavBar-flex'>
-                            <a href='#' className='Navbar-navBarIconLink'>Dev-Contract<span style={{ color: '#b1b1b1' }}>.com</span></a>
-                        </Typography>
-                    </Hidden>
-                    <div className='Navbar-navLinks'>
-                        <Button color='inherit' className='NavBar-navLink'><Typography color='inherit'>About Us</Typography></Button>
-                        <Button color='inherit' className='NavBar-navLink'><Typography color='inherit'>Contact</Typography></Button>
-                    </div>
+                    <Typography variant='title' color='inherit' className='NavBar-flex'>
+                        <a href='#' className='Navbar-navBarIconLink'>Dev-Contract<span style={{ color: '#b1b1b1' }}>.com</span></a>
+                    </Typography>
+                  
                 </Toolbar>
             </AppBar>
         </div>
@@ -33,5 +28,10 @@ const NavBar = () => {
 
 export default NavBar;
 
-
+/* Code for future nav links:
+<div className='Navbar-navLinks'>
+<Button color='inherit' className='NavBar-navLink'><Typography color='inherit'>About Us</Typography></Button>
+<Button color='inherit' className='NavBar-navLink'><Typography color='inherit'>Contact</Typography></Button>
+</div>
+*/
 

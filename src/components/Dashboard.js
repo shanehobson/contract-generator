@@ -41,7 +41,7 @@ class Dashboard extends Component {
             )
           }
         <Grid container justify='center'>
-          <Grid item sm={4}>
+          <Grid item lg={4}>
             {this.props.pageNumber === '1' && <Page1 />}
             {this.props.pageNumber === '2' && <Page2 />}
             {this.props.pageNumber === '3A' && <Page3A />}
@@ -56,7 +56,7 @@ class Dashboard extends Component {
             {this.props.pageNumber === '8B' && <Page8B />}
             {this.props.pageNumber === '9' && <Page9 />}
           </Grid>
-          <Grid item sm={4}>
+          <Grid item lg={4}>
             <WorkingDocument />
           </Grid>
         </Grid>
