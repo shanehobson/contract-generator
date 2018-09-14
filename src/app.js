@@ -5,7 +5,6 @@ import AppRouter, { history } from './routers/AppRouter';
 import configureStore from './store/configureStore';
 import { MuiThemeProvider } from '@material-ui/core/styles';
 import 'normalize.css/normalize.css';
-import './styles/styles.scss';
 import customMuiTheme from './themes/theme.js';
 import NavBar from './components/NavBar';
 import Header from './components/Header';
