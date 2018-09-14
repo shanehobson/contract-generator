@@ -6,7 +6,8 @@
   "license": "MIT",
   "scripts": {
     "build:dev": "webpack",
-    "start": "webpack -p --env production",
+    "build:prod": "webpack -p --env production",
+    "start": "node server.js",
     "dev-server": "webpack-dev-server"
   },
   "dependencies": {
@@ -22,6 +23,7 @@
     "babel-preset-react": "6.24.1",
     "contentful": "^6.1.1",
     "css-loader": "0.28.4",
+    "express": "^4.16.3",
     "extract-text-webpack-plugin": "3.0.0",
     "history": "4.7.2",
     "jspdf": "^1.4.1",
