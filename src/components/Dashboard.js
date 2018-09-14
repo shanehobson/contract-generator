@@ -22,7 +22,7 @@ import Page8A from './formPages/Page8A';
 import Page8B from './formPages/Page8B';
 import Page9 from './formPages/Page9';
 import WorkingDocument from './WorkingDocument';
-import ProgressBar from './Progressbar';
+import ProgressBar from './ProgressBar';
 
 
 class Dashboard extends Component {
