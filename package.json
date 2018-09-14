@@ -26,6 +26,7 @@
     "history": "4.7.2",
     "jspdf": "^1.4.1",
     "node-sass": "4.5.3",
+    "node-sass-json-importer": "^3.3.1",
     "normalize.css": "7.0.0",
     "react": "^16.3.0",
     "react-color": "^2.14.1",
@@ -46,7 +47,6 @@
   "devDependencies": {
     "cross-env": "5.0.5",
     "dotenv": "4.0.0",
-    "node-sass-json-importer": "^3.3.1",
     "redux-devtools-extension": "^2.13.5",
     "webpack-dev-server": "2.5.1"
   }
