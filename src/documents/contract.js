@@ -1,5 +1,5 @@
 import React from 'react';
-import jsPDF from 'jsPDF';
+import jsPDF from 'jspdf';
 
 const margins = {
     top: 30,
