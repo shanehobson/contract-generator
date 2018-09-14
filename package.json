@@ -6,9 +6,8 @@
   "license": "MIT",
   "scripts": {
     "build:dev": "webpack",
-    "build:prod": "webpack -p --env production",
-    "dev-server": "webpack-dev-server",
-    "start": "webpack -p --env production"
+    "start": "webpack -p --env production",
+    "dev-server": "webpack-dev-server"
   },
   "dependencies": {
     "@material-ui/core": "^1.3.1",
