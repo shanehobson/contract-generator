@@ -42,7 +42,7 @@ class Page9 extends Component {
                     <Typography variant='title'>
                         {
                             formsAreComplete ?
-                                'Congratulations, your contract is ready for your review! Please take a moment to review the document in the right pane to make sure all the information is correct. If you need to edit any of the information you entered, click the button below to navigate to the information you wish to edit. Once you are sure that the information in the contraft is correct, click the "Generate PDF" button at the top of the right pane to download a PDF of your contract.'
+                                'Congratulations, your contract is ready for your review! Please take a moment to review the document to make sure all the information is correct. If you need to edit any of the information you entered, click the button below to navigate to the information you wish to edit. Once you are sure that the information in the contraft is correct, click the "Generate PDF" button to download a PDF of your contract.'
                             :
                                 'Some information is missing. Please go back and complete all form fields so we can generate your Web Development Services Agreement.'
                         }

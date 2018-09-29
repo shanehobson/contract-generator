@@ -38,15 +38,15 @@ class Page1 extends Component {
                     </Typography>
                 </div>
                 <div className='PageBottomDiv'>
-                <Button
-                    variant="contained"
-                    color="primary"
-                    size='large'
-                    className={classes.button}
-                    onClick={this.handleNextPageButtonClick}
-                    >
-                    <p className='ButtonText'>Get Started</p>
-              </Button>   
+                    <Button
+                        variant="contained"
+                        color="primary"
+                        size='large'
+                        className={classes.button}
+                        onClick={this.handleNextPageButtonClick}
+                        >
+                        <p className='ButtonText'>Get Started</p>
+                    </Button>   
                 </div>             
             </Paper>
         );

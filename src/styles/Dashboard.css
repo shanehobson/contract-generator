@@ -13,3 +13,13 @@
     display: flex;
     justify-content: center;
 }
+
+
+@media only screen and (max-width: 450px) {
+    .Dashboard-container {
+        padding: 0;
+    }
+    .Dashboard-progressBarContainer {
+        margin-top: 20px;
+    }
+}
