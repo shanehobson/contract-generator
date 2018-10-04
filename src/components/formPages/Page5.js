@@ -138,8 +138,8 @@ class Page5 extends Component {
                 <div className='AltFormContainer'>
                     <div className='PageBottomDiv'>
                         <Button
-                            variant="contained"
-                            color="primary"
+                            variant='contained'
+                            color='primary'
                             size='medium'
                             className={classes.button}
                             onClick={this.handlePreviousPageButtonClick}
@@ -147,8 +147,8 @@ class Page5 extends Component {
                             <p className='ButtonText'>Previous</p>
                         </Button>  
                         <Button
-                            variant="contained"
-                            color="primary"
+                            variant='contained'
+                            color='primary'
                             size='medium'
                             disabled={false}
                             className={classes.button}

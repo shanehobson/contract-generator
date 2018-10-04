@@ -41,7 +41,7 @@ class WorkingDocument extends Component {
         });
     }
 
-    componentWillReceiveProps() {
+    componentWillReceiveProps(nextProps) {
         this.setState({
             formsAreComplete: this.formsAreComplete(),
             textColor: this.formsAreComplete() ? '#000' : '#aaa'

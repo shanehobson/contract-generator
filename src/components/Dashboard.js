@@ -74,15 +74,3 @@ const mapStateToProps = (state) => ({
 });
 
 export default connect(mapStateToProps)(Dashboard);
-
-
-
-// <Grid container>
-//         <Grid item sm={6}>
-//           <div className='HomePage-container'>
-//             HomePage Component placeholder text
-//           </div>
-//         </Grid>
-//         <Grid item sm={6}>
-//         </Grid>
-//       </Grid>

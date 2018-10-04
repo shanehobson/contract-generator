@@ -21,7 +21,7 @@ const jsx = (
     <MuiThemeProvider theme={customMuiTheme}>
       <NavBar />
       <Header />
-        <AppRouter />
+      <AppRouter />
       <Footer />
     </MuiThemeProvider>
   </Provider>
