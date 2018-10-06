@@ -21,8 +21,6 @@ const headerFooterFormatting = doc => {
 
     for(let i = totalPages; i >= 1; i--) { 
         doc.setPage(i);   //make this page, the current page we are currently working on.             
-        //header(doc);
-        //footer(doc, i, totalPages);
     }
 };
 

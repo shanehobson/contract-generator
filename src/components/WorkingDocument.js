@@ -89,6 +89,7 @@ class WorkingDocument extends Component {
         }
         
         this.props.startSetFormsAreComplete(result);
+        console.log(paymentTerms);
         return result;
     }
 
