@@ -61,14 +61,13 @@ class ProgressBar extends React.Component {
         if (devType === 'business') total++;
         if (customerType === 'business') total++;
 
-        console.log(total);
         return total;
     };
 
   render() {
     const { classes } = this.props;
     const { completed, total } = this.state;
-    console.log();
+    
     return (
       <div className={classes.root}>
         <LinearProgress variant="determinate" value={Math.floor(completed / total * 100)} />
