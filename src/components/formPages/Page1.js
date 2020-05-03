@@ -34,7 +34,12 @@ class Page1 extends Component {
             <Paper classes={{root: this.props.classes.root}} elevation={1}>
                 <div className='Page1TopDiv'>
                     <Typography variant='title'>
-                        Welcome to Dev-Contract.com. In just a few short steps, we can help you generate a Web Development Services Contract for your freelance web development project. Click on the button below to get started!
+                        <span>
+                        Welcome to Contract Generator. 
+                        </span>
+                        <div>
+                        In just a few short steps, we can help you generate a Web Development Services Contract for your freelance web development project. Click on the button below to get started!
+                        </div>
                     </Typography>
                 </div>
                 <div className='PageBottomDiv'>

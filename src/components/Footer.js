@@ -11,7 +11,7 @@ const Footer = () => (
                 <Grid container justify='center' alignContent='center'>
                     <Grid item>
                         <Typography variant='title' style={{ color: '#fff'}}>
-                            &copy; Copyright 2018
+                            &copy; Copyright 2020
                         </Typography>
                     </Grid>
                 </Grid>

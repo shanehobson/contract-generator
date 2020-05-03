@@ -16,7 +16,7 @@ const NavBar = () => {
             <AppBar position='static'>
                 <Toolbar>
                     <Typography variant='title' color='inherit' className='NavBar-flex'>
-                        <a href='#' className='Navbar-navBarIconLink'>Dev-Contract<span style={{ color: '#b1b1b1' }}>.com</span></a>
+                        <a href='#' className='Navbar-navBarIconLink'>Contract Generator</a>
                     </Typography>
                   
                 </Toolbar>
