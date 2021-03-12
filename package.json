@@ -26,7 +26,7 @@
     "express": "^4.16.3",
     "extract-text-webpack-plugin": "^4.0.0-beta.0",
     "history": "4.7.2",
-    "jspdf": "^1.4.1",
+    "jspdf": "^2.3.1",
     "node": "^12.16.3",
     "node-sass": "^4.14.0",
     "node-sass-json-importer": "^3.3.1",
